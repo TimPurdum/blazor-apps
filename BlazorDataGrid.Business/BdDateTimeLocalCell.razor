@@ -1,0 +1,9 @@
+﻿@inherits BdInputCell
+@{
+    var dt = Value as DateTime?;
+}
+<input type="datetime-local"
+       value="@dt"
+       @onchange="@(() => TypedValueChanged(dt))"
+       disabled="@(!IsEditable)"
+       style="@Style"/>

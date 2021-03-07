@@ -1,0 +1,83 @@
+﻿@page "/"
+@using System.Drawing
+
+<h1>Blazor Data Grid Demo!</h1>
+<label>Grid Width</label>
+<input @bind="GridWidth"/>Width: @GridWidth
+<BdGrid ItemsSource="People" AutoGenerateColumns="@false"
+        Width="@GridWidth" Height="500" RowHeight="40" ColumnDefinitions="@ColumnDefinitions"/>
+
+
+@code {
+
+    public class Person
+    {
+        public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+        public string FirstName
+        {
+            get; 
+            set;
+        }
+        public string LastName { get; set; }
+    }
+
+    public IList<Person> People = new List<Person>
+    {
+        new()
+        {
+            FirstName = "Tim",
+            LastName = "Purdum",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 6, 15)
+        },
+        new()
+        {
+            FirstName = "Suzanne",
+            LastName = "Bullard",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 4, 14)
+        },
+        new()
+        {
+            FirstName = "Elliot",
+            LastName = "Purdum",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 5, 13)
+        }
+    };
+
+    public IList<BdColumnDefinition> ColumnDefinitions = new List<BdColumnDefinition>
+    {
+        new()
+        {
+            BindingField = "FirstName",
+            Header = "First Name",
+            BackgroundColor = Color.Aqua,
+            Width = 200,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            IsEditable = false
+        },
+        new()
+        {
+            BindingField = "LastName",
+            Header = "Family Name",
+            BackgroundColor = Color.Chartreuse,
+            Width = 200,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            IsEditable = true
+        },
+        new()
+        {
+            BindingField = "DateOfBirth",
+            Header = "DOB",
+            BackgroundColor = Color.Aqua,
+            Width = 200,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            IsEditable = false
+        }
+    };
+
+    private int GridWidth { get; set; } = 300;
+}

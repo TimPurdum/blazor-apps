@@ -1,0 +1,5 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/BlazorDataGrid.Business" Path="C:\git\BlazorDataGrid\BlazorDataGrid.Business\obj\Debug\net5.0\scopedcss\projectbundle\" />
+  <ContentRoot BasePath="_content/BlazorDataGrid.Business" Path="C:\git\BlazorDataGrid\BlazorDataGrid.Business\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>

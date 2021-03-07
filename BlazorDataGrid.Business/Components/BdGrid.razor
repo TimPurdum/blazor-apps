@@ -1,0 +1,23 @@
+﻿@inherits BdGridBase
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@typeparam TItem
+
+<div class="bd-grid-container" style="@Style">
+    <div class="bd-grid">
+        <CascadingValue Name="ColumnDefinitions" Value="ColumnDefinitions">
+            <CascadingValue Name="RowHeight" Value="RowHeight">
+                <CascadingValue Name="RowHeightUnit" Value="RowHeightUnit">
+                    <BdGridHeaderRow/>
+                    <div class="bd-grid-row-container">
+                        <Virtualize Items="@ItemsSource" Context="item">
+                            <ItemContent>
+                                <BdGridRow Item="@item"/>
+                            </ItemContent>
+                            <Placeholder>Loading...</Placeholder>
+                        </Virtualize>
+                    </div>
+                </CascadingValue>
+            </CascadingValue>
+        </CascadingValue>
+    </div>
+</div>

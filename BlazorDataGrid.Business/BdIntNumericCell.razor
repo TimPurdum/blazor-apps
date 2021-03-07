@@ -1,0 +1,10 @@
+﻿@inherits BdInputCell
+@{
+    var i = Value as int?;
+}
+<input type="number"
+       step="1"
+       value="@i"
+       @onchange="@(() => TypedValueChanged(i))"
+       disabled="@(!IsEditable)"
+       style="@Style"/>
