@@ -1,16 +1,24 @@
 ﻿@page "/"
 @using System.Drawing
+@using System.Text.Json
 
 <h1>Blazor Data Grid Demo!</h1>
 <label>Grid Width</label>
 <input @bind="GridWidth"/>Width: @GridWidth
-<BdGrid ItemsSource="People" AutoGenerateColumns="@false"
+<textarea style="display: block; height:  200px; width: 600px;" value="@_jsonValue" @onchange="JsonChanged" />
+<BdGrid @ref="DataGrid" @bind-ItemsSource="@People" AutoGenerateColumns="@false"
         Width="@GridWidth" Height="500" RowHeight="40" ColumnDefinitions="@ColumnDefinitions"/>
 
 
 @code {
 
-    public class Person
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _jsonValue = JsonSerializer.Serialize(People);
+    }
+
+    public class Person: IEquatable<Person>
     {
         public int Age { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -21,9 +29,29 @@
             set;
         }
         public string LastName { get; set; }
+
+        public bool Equals(Person other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Age == other.Age && DateOfBirth.Equals(other.DateOfBirth) && FirstName == other.FirstName && LastName == other.LastName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Person) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Age, DateOfBirth, FirstName, LastName);
+        }
     }
 
-    public IList<Person> People = new List<Person>
+    public List<Person> People = new List<Person>
     {
         new()
         {
@@ -79,5 +107,18 @@
         }
     };
 
-    private int GridWidth { get; set; } = 300;
+    private int GridWidth { get; set; } = 600;
+    private string _jsonValue;
+
+    private void JsonChanged(ChangeEventArgs e)
+    {
+        _jsonValue = e.Value.ToString();
+        People.Clear();
+        StateHasChanged();
+        People.AddRange(JsonSerializer.Deserialize<List<Person>>(_jsonValue));
+        StateHasChanged();
+    }
+
+    public BdGridBase DataGrid { get; set; }
+
 }

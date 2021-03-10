@@ -16,7 +16,9 @@ namespace BlazorDataGrid.Business.Components
         [Parameter]
         public IList<TItem> ItemsSource { get; set; } = new List<TItem>();
 
-
+        [Parameter]
+        public EventCallback<IList<TItem>> ItemsSourceChanged { get; set; }
+        
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
