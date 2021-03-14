@@ -1,9 +1,6 @@
-﻿@inherits BdInputCell
-@{
-    var d = Value as double?;
-}
+﻿@inherits BdInputCell<double?>
+
 <input type="number"
-       value="@d"
-       @onchange="@(() => TypedValueChanged(d))"
+       @bind="TypedValue"
        disabled="@(!IsEditable)"
        style="@Style"/>

@@ -6,33 +6,32 @@
     <Virtualize Items="@ColumnDefinitions" Context="columnDefinition">
         @{
             if (Item == null) return;
-            var fieldValue = GetFieldValue(columnDefinition.BindingField);
             switch (columnDefinition.FieldType)
             {
                 case null:
                 case FieldType.Text:
-                    <BdTextCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdTextCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
                 case FieldType.Checkbox:
-                    <BdCheckboxCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdCheckboxCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
                 case FieldType.IntNumeric:
-                    <BdIntNumericCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdIntNumericCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
                 case FieldType.DoubleNumeric:
-                    <BdDoubleNumericCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdDoubleNumericCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
                 case FieldType.Date:
-                    <BdDateCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdDateCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
                 case FieldType.Time:
-                    <BdTimeCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdTimeCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
                 case FieldType.DateTimeLocal:
-                    <BdDateTimeLocalCell Parent="@(this)" @bind-Value="fieldValue" ColumnDefinition="@columnDefinition"/>
+                    <BdDateTimeLocalCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                     break;
             }
         }
     </Virtualize>
-    
+
 </div>

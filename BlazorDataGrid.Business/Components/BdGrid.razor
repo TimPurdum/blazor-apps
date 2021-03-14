@@ -9,9 +9,9 @@
                 <CascadingValue Name="RowHeightUnit" Value="RowHeightUnit">
                     <BdGridHeaderRow/>
                     <div class="bd-grid-row-container">
-                        <Virtualize Items="@ItemsSource" Context="item">
+                        <Virtualize @ref="VirtualGrid" Items="@ItemsSource" Context="item">
                             <ItemContent>
-                                <BdGridRow Item="@item"/>
+                                <BdGridRow RowValueChanged="@OnRowValueChanged" Item="@item"/>
                             </ItemContent>
                             <Placeholder>Loading...</Placeholder>
                         </Virtualize>

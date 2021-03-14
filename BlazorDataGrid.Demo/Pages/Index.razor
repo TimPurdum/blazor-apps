@@ -1,10 +1,16 @@
 ﻿@page "/"
 @using System.Drawing
 @using System.Text.Json
+@using System.Collections.ObjectModel
+@using System.ComponentModel
+@using System.Runtime.CompilerServices
 
 <h1>Blazor Data Grid Demo!</h1>
 <label>Grid Width</label>
 <input @bind="GridWidth"/>Width: @GridWidth
+<p>@_message</p>
+<label>First Row, First Name</label>
+<input @bind="@People[0].FirstName" />
 <textarea style="display: block; height:  200px; width: 600px;" value="@_jsonValue" @onchange="JsonChanged" />
 <BdGrid @ref="DataGrid" @bind-ItemsSource="@People" AutoGenerateColumns="@false"
         Width="@GridWidth" Height="500" RowHeight="40" ColumnDefinitions="@ColumnDefinitions"/>
@@ -18,17 +24,52 @@
         _jsonValue = JsonSerializer.Serialize(People);
     }
 
-    public class Person: IEquatable<Person>
+    public class Person: IEquatable<Person>, INotifyPropertyChanged
     {
-        public int Age { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        private string _firstName;
+        private DateTime _dateOfBirth;
+        private string _lastName;
+        private int _age;
+
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                _age = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime DateOfBirth
+        {
+            get => _dateOfBirth;
+            set
+            {
+                _dateOfBirth = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string FirstName
         {
-            get; 
-            set;
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged();
+            }
         }
-        public string LastName { get; set; }
+
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool Equals(Person other)
         {
@@ -49,32 +90,25 @@
         {
             return HashCode.Combine(Age, DateOfBirth, FirstName, LastName);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
-    public List<Person> People = new List<Person>
+    public IList<Person> People
     {
-        new()
+        get => _people;
+        set
         {
-            FirstName = "Tim",
-            LastName = "Purdum",
-            Age = 44,
-            DateOfBirth = new DateTime(1976, 6, 15)
-        },
-        new()
-        {
-            FirstName = "Suzanne",
-            LastName = "Bullard",
-            Age = 44,
-            DateOfBirth = new DateTime(1976, 4, 14)
-        },
-        new()
-        {
-            FirstName = "Elliot",
-            LastName = "Purdum",
-            Age = 14,
-            DateOfBirth = new DateTime(2006, 5, 13)
+            _people = value;
+            _jsonValue = JsonSerializer.Serialize(value);
+            StateHasChanged();
         }
-    };
+    }
 
     public IList<BdColumnDefinition> ColumnDefinitions = new List<BdColumnDefinition>
     {
@@ -109,14 +143,47 @@
 
     private int GridWidth { get; set; } = 600;
     private string _jsonValue;
+    private string _message = string.Empty;
+    private IList<Person> _people = new ObservableCollection<Person>
+    {
+        new()
+        {
+            FirstName = "Tim",
+            LastName = "Purdum",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 6, 15)
+        },
+        new()
+        {
+            FirstName = "Suzanne",
+            LastName = "Bullard",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 4, 14)
+        },
+        new()
+        {
+            FirstName = "Elliot",
+            LastName = "Purdum",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 5, 13)
+        }
+    };
 
     private void JsonChanged(ChangeEventArgs e)
     {
-        _jsonValue = e.Value.ToString();
-        People.Clear();
-        StateHasChanged();
-        People.AddRange(JsonSerializer.Deserialize<List<Person>>(_jsonValue));
-        StateHasChanged();
+        _jsonValue = e.Value?.ToString();
+        if (_jsonValue == null) return;
+        try
+        {
+            var newPeople = JsonSerializer.Deserialize<ObservableCollection<Person>>(_jsonValue);
+            if (newPeople == null) return;
+            People.Clear();
+            People = newPeople;
+        }
+        catch
+        {
+            _message = "Invalid JSON";
+        }
     }
 
     public BdGridBase DataGrid { get; set; }

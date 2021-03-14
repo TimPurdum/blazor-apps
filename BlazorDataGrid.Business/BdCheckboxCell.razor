@@ -1,9 +1,6 @@
-﻿@inherits BdInputCell
-@{
-    var b = Value as bool?;
-}
+﻿@inherits BdInputCell<bool?>
+
 <input type="checkbox"
-       value="@b"
-       @onchange="@(() => TypedValueChanged(b))"
+       @bind="TypedValue"
        disabled="@(!IsEditable)"
        style="@Style"/>

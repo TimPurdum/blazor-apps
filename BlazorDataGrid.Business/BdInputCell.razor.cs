@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BlazorDataGrid.Business
 {
-    public partial class BdInputCell
+    public partial class BdInputCell<T>
     {
         [Parameter]
         public BdColumnDefinition ColumnDefinition { get; set; } = null!;
@@ -12,8 +12,25 @@ namespace BlazorDataGrid.Business
         [Parameter]
         public object? Value
         {
-            get => _value;
-            set => _value = value;
+            get => TypedValue;
+            set
+            {
+                if (value is T t)
+                {
+                    TypedValue = t;
+                }
+            }
+        }
+
+        [Parameter]
+        public T TypedValue
+        {
+            get => _typedValue;
+            set
+            {
+                _typedValue = value;
+                ValueChanged.InvokeAsync(Value);
+            }
         }
 
         [Parameter]
@@ -25,11 +42,6 @@ namespace BlazorDataGrid.Business
             Style = ColumnDefinition.Style;
         }
 
-        protected void TypedValueChanged(object? typedValue)
-        {
-            Value = typedValue;
-            ValueChanged.InvokeAsync(Value);
-        }
 
         protected override void OnParametersSet()
         {
@@ -37,6 +49,6 @@ namespace BlazorDataGrid.Business
             InheritValues(ColumnDefinition);
         }
 
-        private object? _value;
+        private T _typedValue = default!;
     }
 }

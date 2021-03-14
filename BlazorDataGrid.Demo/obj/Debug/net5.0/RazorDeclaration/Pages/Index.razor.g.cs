@@ -96,6 +96,34 @@ using System.Drawing;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
+using System.Collections.ObjectModel;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
+using System.ComponentModel;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
+using System.Runtime.CompilerServices;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,46 +133,100 @@ using System.Drawing;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 11 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
+#line 19 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
        
 
-    public class Person
+    protected override void OnInitialized()
     {
-        public int Age { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        base.OnInitialized();
+        _jsonValue = JsonSerializer.Serialize(People);
+    }
+
+    public class Person: IEquatable<Person>, INotifyPropertyChanged
+    {
+        private string _firstName;
+        private DateTime _dateOfBirth;
+        private string _lastName;
+        private int _age;
+
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                _age = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime DateOfBirth
+        {
+            get => _dateOfBirth;
+            set
+            {
+                _dateOfBirth = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string FirstName
         {
-            get; 
-            set;
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged();
+            }
         }
-        public string LastName { get; set; }
+
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool Equals(Person other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Age == other.Age && DateOfBirth.Equals(other.DateOfBirth) && FirstName == other.FirstName && LastName == other.LastName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Person) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Age, DateOfBirth, FirstName, LastName);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
-    public IList<Person> People = new List<Person>
+    public IList<Person> People
     {
-        new()
+        get => _people;
+        set
         {
-            FirstName = "Tim",
-            LastName = "Purdum",
-            Age = 44,
-            DateOfBirth = new DateTime(1976, 6, 15)
-        },
-        new()
-        {
-            FirstName = "Suzanne",
-            LastName = "Bullard",
-            Age = 44,
-            DateOfBirth = new DateTime(1976, 4, 14)
-        },
-        new()
-        {
-            FirstName = "Elliot",
-            LastName = "Purdum",
-            Age = 14,
-            DateOfBirth = new DateTime(2006, 5, 13)
+            _people = value;
+            _jsonValue = JsonSerializer.Serialize(value);
+            StateHasChanged();
         }
-    };
+    }
 
     public IList<BdColumnDefinition> ColumnDefinitions = new List<BdColumnDefinition>
     {
@@ -177,7 +259,53 @@ using System.Drawing;
         }
     };
 
-    private int GridWidth { get; set; } = 300;
+    private int GridWidth { get; set; } = 600;
+    private string _jsonValue;
+    private string _message = string.Empty;
+    private IList<Person> _people = new ObservableCollection<Person>
+    {
+        new()
+        {
+            FirstName = "Tim",
+            LastName = "Purdum",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 6, 15)
+        },
+        new()
+        {
+            FirstName = "Suzanne",
+            LastName = "Bullard",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 4, 14)
+        },
+        new()
+        {
+            FirstName = "Elliot",
+            LastName = "Purdum",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 5, 13)
+        }
+    };
+
+    private void JsonChanged(ChangeEventArgs e)
+    {
+        _jsonValue = e.Value?.ToString();
+        if (_jsonValue == null) return;
+        try
+        {
+            var newPeople = JsonSerializer.Deserialize<ObservableCollection<Person>>(_jsonValue);
+            if (newPeople == null) return;
+            People.Clear();
+            People = newPeople;
+        }
+        catch
+        {
+            _message = "Invalid JSON";
+        }
+    }
+
+    public BdGridBase DataGrid { get; set; }
+
 
 #line default
 #line hidden

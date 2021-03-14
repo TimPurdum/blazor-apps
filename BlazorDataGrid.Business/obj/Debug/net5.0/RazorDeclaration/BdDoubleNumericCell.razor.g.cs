@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Components.Web;
 #line default
 #line hidden
 #nullable disable
-    public partial class BdDoubleNumericCell : BdInputCell
+    public partial class BdDoubleNumericCell : BdInputCell<double?>
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

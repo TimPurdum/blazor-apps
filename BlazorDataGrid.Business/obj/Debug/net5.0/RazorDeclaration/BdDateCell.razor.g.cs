@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Components.Web;
 #line default
 #line hidden
 #nullable disable
-    public partial class BdDateCell : BdInputCell
+    public partial class BdDateCell : BdInputCell<DateTime?>
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -13,12 +15,41 @@ namespace BlazorDataGrid.Business.Components
 {
     public partial class BdGrid<TItem>
     {
+        private IList<TItem> _itemsSource = new ObservableCollection<TItem>();
+
         [Parameter]
-        public IList<TItem> ItemsSource { get; set; } = new List<TItem>();
+        public IList<TItem> ItemsSource
+        {
+            get => _itemsSource;
+            set
+            {
+                var tempSource = value;
+                _itemsSource = new List<TItem>();
+
+                Task.Run(async () =>
+                {
+                    await InvokeAsync(StateHasChanged);
+                    _itemsSource = tempSource;
+                    await InvokeAsync(StateHasChanged);               
+                });
+            }
+        }
+        
 
         [Parameter]
         public EventCallback<IList<TItem>> ItemsSourceChanged { get; set; }
-        
+
+        public Virtualize<TItem> VirtualGrid { get; set; } = null!;
+
+        public async void OnRowValueChanged(ChangeEventArgs e)
+        {
+            var args = e.Value as Tuple<int, TItem?>;
+            if (args == null || args.Item2 == null || args.Item1 < 0 || args.Item1 > ItemsSource.Count - 1) return;
+            ItemsSource[args.Item1] = args.Item2;
+            await ItemsSourceChanged.InvokeAsync(ItemsSource);
+        }
+
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
