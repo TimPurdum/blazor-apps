@@ -1,34 +1,5 @@
 @import '';
 
-/* _content/BlazorDataGrid.Business/BdGridHeaderRow.razor.rz.scp.css */
-.bd-grid-header-row[b-hjgl0bpt76] {
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-}
-
-.bd-grid-header[b-hjgl0bpt76] {
-    display: inline-block;
-    font-weight: bold;
-    border: 1px solid darkgray;
-    background-color: lightgray;
-}
-/* _content/BlazorDataGrid.Business/BdGridRow.razor.rz.scp.css */
-.bd-grid-row[b-an0mv66476] {
-    
-}
-/* _content/BlazorDataGrid.Business/BdInputCell.razor.rz.scp.css */
-[b-mlni69drcm] .bd-input-cell {
-    height: 100%;
-    border-radius: 0;
-}
-/* _content/BlazorDataGrid.Business/Component1.razor.rz.scp.css */
-.my-component[b-fta2ctv41w] {
-    border: 2px dashed red;
-    padding: 1em;
-    margin: 1em 0;
-    background-image: url('background.png');
-}
 /* _content/BlazorDataGrid.Business/Components/BdGrid.razor.rz.scp.css */
 .bd-grid-container[b-femrk2m35u] {
     position: relative;
@@ -50,4 +21,36 @@
     /*white-space: nowrap;*/
     height: 100%;
     min-width: 100%;
+}
+/* _content/BlazorDataGrid.Business/Components/BdGridHeaderRow.razor.rz.scp.css */
+.bd-grid-header-row[b-xsmwbfhify] {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.bd-grid-header-cell[b-xsmwbfhify] {
+    display: inline-block;
+    font-weight: bold;
+    border: 1px solid darkgray;
+    background-color: lightgray;
+    padding: 1px 2px;
+}
+/* _content/BlazorDataGrid.Business/Components/BdGridRow.razor.rz.scp.css */
+.bd-grid-row[b-6mpwzjro9r] {
+    
+}
+/* _content/BlazorDataGrid.Business/Components/Cells/BdInputCell.razor.rz.scp.css */
+[b-ugkk3ez7ba] .bd-input-cell {
+    height: 100%;
+    border-radius: 0;
+    border-width: 2px;
+    border-style: inset;
+    border-color: rgb(118, 118, 118);
+    border-image: initial;
+    display: inline-block;
+}
+
+[b-ugkk3ez7ba] .bd-checkbox-cell-wrapper {
+    text-align: center;
 }

@@ -1,0 +1,13 @@
+﻿::deep .bd-input-cell {
+    height: 100%;
+    border-radius: 0;
+    border-width: 2px;
+    border-style: inset;
+    border-color: rgb(118, 118, 118);
+    border-image: initial;
+    display: inline-block;
+}
+
+::deep .bd-checkbox-cell-wrapper {
+    text-align: center;
+}

@@ -5,12 +5,9 @@ C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.c
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.MvcApplicationPartsAssemblyInfo.cache
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.RazorComponent.input.cache
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
-C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
-C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.RazorComponent.output.cache
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\bin\Debug\net5.0\appsettings.Development.json
@@ -29,12 +26,9 @@ C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.T
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.TagHelpers.output.cache
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\BlazorDataGrid.Demo.RazorCoreGenerate.cache
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\App.razor.g.cs
-C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
-C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
-C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Demo\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs

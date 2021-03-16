@@ -1,0 +1,13 @@
+﻿.bd-grid-header-row {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.bd-grid-header-cell {
+    display: inline-block;
+    font-weight: bold;
+    border: 1px solid darkgray;
+    background-color: lightgray;
+    padding: 1px 2px;
+}

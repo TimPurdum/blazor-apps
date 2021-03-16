@@ -1,0 +1,25 @@
+﻿@using System.Text
+@using BlazorDataGrid.Business.Utilities
+@inherits BlazorDataGrid.Business.Components.BdGridComponent
+
+<div class="bd-grid-header-row">
+    @foreach (var col in ColumnDefinitions)
+    {
+        <div class="bd-grid-header-cell" style="@BuildColumnHeaderStyle(col)">@col.Header</div>
+    }
+</div>
+
+@code {
+
+    [CascadingParameter(Name = "ColumnDefinitions")]
+    public IList<BdColumnDefinition> ColumnDefinitions { get; set; } = new List<BdColumnDefinition>();
+
+    private string BuildColumnHeaderStyle(BdColumnDefinition col)
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append($"width:{CssConverter.ColumnWidthMeasurement(col.WidthUnit, col.Width)}");
+
+        return stringBuilder.ToString();
+    }
+
+}

@@ -1,0 +1,52 @@
+﻿@inherits BdInputCell<string>
+
+<input class="bd-input-cell"
+       type="text"
+       @bind="TypedValue"
+       @onfocusout="@FocusOut"
+       disabled="@(!IsEditable)"
+       style="@Style"/>
+       
+@code
+{
+    public override object? Value
+    {
+        get
+        {
+            var fieldVal = (string)base.Value;
+            if (_originalValue?.GetType() != typeof(string) && fieldVal != null)
+            {
+                try
+                {
+                    switch (_originalValue)
+                    {
+                        case int i:
+                            return int.Parse(fieldVal!);
+                        case double d:
+                            return double.Parse(fieldVal!);
+                        case DateTime dt:
+                            return DateTime.Parse(fieldVal);
+                        case bool b:
+                            return bool.Parse(fieldVal);    
+                    }
+                }
+                catch
+                {
+                    return default;
+                }
+            }
+            return fieldVal;
+        }
+        set
+        {
+            _originalValue = value;
+            if (_originalValue?.GetType() == typeof(DateTime))
+            {
+                
+            }
+            base.Value = value?.ToString();
+        }
+    }
+
+    private object? _originalValue;
+}

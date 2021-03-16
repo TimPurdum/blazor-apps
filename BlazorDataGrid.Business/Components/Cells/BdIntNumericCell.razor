@@ -1,0 +1,9 @@
+﻿@inherits BdInputCell<int?>
+
+<input class="bd-input-cell"
+       type="number"
+       step="1"
+       @bind="TypedValue"
+       @onfocusout="@FocusOut"
+       disabled="@(!IsEditable)"
+       style="@Style"/>

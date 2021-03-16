@@ -1,0 +1,9 @@
+﻿@inherits BdInputCell<bool?>
+
+<div class="bd-checkbox-cell-wrapper" style="@Style">
+    <input class="bd-input-cell" 
+           type="checkbox"
+           @bind="TypedValue"
+           @onfocusout="@FocusOut"
+           disabled="@(!IsEditable)"/>
+</div>

@@ -97,7 +97,7 @@ using BlazorDataGrid.Business.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Shared\NavMenu.razor"
+#line 18 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

@@ -7,15 +7,20 @@
         <CascadingValue Name="ColumnDefinitions" Value="ColumnDefinitions">
             <CascadingValue Name="RowHeight" Value="RowHeight">
                 <CascadingValue Name="RowHeightUnit" Value="RowHeightUnit">
-                    <BdGridHeaderRow/>
-                    <div class="bd-grid-row-container">
-                        <Virtualize @ref="VirtualGrid" Items="@ItemsSource" Context="item">
-                            <ItemContent>
-                                <BdGridRow RowValueChanged="@OnRowValueChanged" Item="@item"/>
-                            </ItemContent>
-                            <Placeholder>Loading...</Placeholder>
-                        </Virtualize>
-                    </div>
+                    <CascadingValue Name="Grid" Value="@this">
+                        <BdGridHeaderRow/>
+                        <div class="bd-grid-row-container">
+                            <Virtualize @ref="VirtualGrid" Items="ItemsSource" Context="item">
+                                <ItemContent>
+                                    @if (item != null)
+                                    {
+                                        <BdGridRow RowValueChanged="@OnRowValueChanged" Item="@item" Index="@ItemsSource.IndexOf(item)"/>
+                                    }
+                                </ItemContent>
+                                <Placeholder>Loading...</Placeholder>
+                            </Virtualize>
+                        </div>
+                    </CascadingValue>
                 </CascadingValue>
             </CascadingValue>
         </CascadingValue>

@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorDataGrid.Business.Utilities;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -15,26 +15,51 @@ namespace BlazorDataGrid.Business.Components
 {
     public partial class BdGrid<TItem>
     {
-        private IList<TItem> _itemsSource = new ObservableCollection<TItem>();
+        public override event EventHandler<RowSourceChangedEventArgs>? RowSourceChanged;
 
         [Parameter]
         public IList<TItem> ItemsSource
         {
-            get => _itemsSource;
+            get
+            {
+                lock (_itemLock)
+                {
+                    return _itemsSource;
+                }
+            }
             set
             {
-                var tempSource = value;
-                _itemsSource = new List<TItem>();
+                IList<TItem> tempSource;
+                ClearItemPropertyHandlers();
+                lock (_itemLock)
+                {
+                    tempSource = value;
+                    _itemsSource = new List<TItem>();
+                }
 
                 Task.Run(async () =>
                 {
-                    await InvokeAsync(StateHasChanged);
-                    _itemsSource = tempSource;
-                    await InvokeAsync(StateHasChanged);               
+                    await InvokeAsync(async () =>
+                    {
+                        StateHasChanged();
+                        await Task.Run(async () =>
+                        {
+                            lock (_itemLock)
+                            {
+                                _itemsSource = tempSource;
+                            }
+
+                            await InvokeAsync(() =>
+                            {
+                                StateHasChanged();
+                                AddItemPropertyHandlers();
+                            });
+                        });
+                    });
                 });
             }
         }
-        
+
 
         [Parameter]
         public EventCallback<IList<TItem>> ItemsSourceChanged { get; set; }
@@ -43,10 +68,25 @@ namespace BlazorDataGrid.Business.Components
 
         public async void OnRowValueChanged(ChangeEventArgs e)
         {
-            var args = e.Value as Tuple<int, TItem?>;
-            if (args == null || args.Item2 == null || args.Item1 < 0 || args.Item1 > ItemsSource.Count - 1) return;
-            ItemsSource[args.Item1] = args.Item2;
-            await ItemsSourceChanged.InvokeAsync(ItemsSource);
+            if (!(e.Value is Tuple<int, TItem?> args) || args.Item2 == null || args.Item1 < 0 ||
+                args.Item1 > ItemsSource.Count - 1)
+            {
+                return;
+            }
+
+            ClearItemPropertyHandlers();
+
+            lock (_itemLock)
+            {
+                ItemsSource[args.Item1] = args.Item2;
+            }
+
+            await InvokeAsync(async () =>
+            {
+                await ItemsSourceChanged.InvokeAsync(ItemsSource);
+                StateHasChanged();
+                AddItemPropertyHandlers();
+            });
         }
 
 
@@ -74,7 +114,8 @@ namespace BlazorDataGrid.Business.Components
                             BindingField = prop.Name,
                             Header = (prop.GetCustomAttribute(typeof(DisplayNameAttribute)) as DisplayNameAttribute)?
                                 .DisplayName ?? prop.Name,
-                            FieldType = SetFieldType(prop.PropertyType)
+                            FieldType = SetFieldType(prop.PropertyType),
+                            IsEditable = this.IsEditable
                         };
                         ColumnDefinitions.Add(col);
                     }
@@ -95,6 +136,8 @@ namespace BlazorDataGrid.Business.Components
             }
 
             CalculateAutomaticWidths();
+            ClearItemPropertyHandlers();
+            AddItemPropertyHandlers();
         }
 
         private FieldType? SetFieldType(Type propType)
@@ -110,14 +153,67 @@ namespace BlazorDataGrid.Business.Components
                     return FieldType.DateTimeLocal;
                 case "bool":
                     return FieldType.Checkbox;
-                default: 
+                default:
                     return FieldType.Text;
             }
         }
+
+        private void ClearItemPropertyHandlers()
+        {
+            lock (_itemLock)
+            {
+                foreach (var item in _itemsSource)
+                {
+                    if (item is INotifyPropertyChanged propItem)
+                    {
+                        propItem.PropertyChanged -= OnItemPropertyChanged;
+                    }
+                }
+            }
+        }
+
+        private void AddItemPropertyHandlers()
+        {
+            lock (_itemLock)
+            {
+                foreach (var item in _itemsSource)
+                {
+                    if (item is INotifyPropertyChanged propItem)
+                    {
+                        propItem.PropertyChanged += OnItemPropertyChanged;
+                    }
+                }
+            }
+        }
+
+        private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            int index;
+            TItem item;
+
+            ClearItemPropertyHandlers();
+            lock (_itemLock)
+            {
+                item = (TItem) sender!;
+                index = ItemsSource.IndexOf(item);
+            }
+
+            OnRowValueChanged(new ChangeEventArgs {Value = new Tuple<int, TItem?>(index, item)});
+            RowSourceChanged?.Invoke(this, new RowSourceChangedEventArgs(index));
+        }
+
+        private readonly object _itemLock = new();
+        private IList<TItem> _itemsSource = new ObservableCollection<TItem>();
     }
 
     public class BdGridBase : BdGridComponent
     {
+        public virtual event EventHandler<RowSourceChangedEventArgs>? RowSourceChanged
+        {
+            add => throw new NotImplementedException();
+            remove => throw new NotImplementedException();
+        }
+
         [Parameter]
         public bool AutoGenerateColumns { get; set; } = true;
 
@@ -154,6 +250,15 @@ namespace BlazorDataGrid.Business.Components
         [Parameter]
         public MeasurementUnit? WidthUnit { get; set; } = MeasurementUnit.Pixel;
 
+        [Parameter]
+        public bool CanUserAddRows { get; set; } = false;
+
+        [Parameter]
+        public bool CanUserDeleteRows { get; set; } = false;
+        
+        [Parameter]
+        public override bool? IsEditable { get; set; }
+
 
         public override async Task BuildStyle(StringBuilder? builder = null)
         {
@@ -175,7 +280,6 @@ namespace BlazorDataGrid.Business.Components
 
             Style = builder.ToString();
             StyleChanged = false;
-            //await InvokeAsync(StateHasChanged);
         }
 
 
@@ -223,5 +327,16 @@ namespace BlazorDataGrid.Business.Components
 
         private static CancellationTokenSource _tokenSource = new();
         private int _width;
+    }
+
+
+    public class RowSourceChangedEventArgs : EventArgs
+    {
+        public RowSourceChangedEventArgs(int rowIndex)
+        {
+            RowIndex = rowIndex;
+        }
+
+        public int RowIndex { get; }
     }
 }

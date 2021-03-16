@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorDataGrid.Business.Utilities;
+using Microsoft.AspNetCore.Components;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,9 +105,8 @@ namespace BlazorDataGrid.Business.Components
                 }
             }
         }
-
-        [Parameter]
-        public bool? IsEditable { get; set; }
+        
+        public virtual bool? IsEditable { get; set; }
 
         [Parameter]
         public virtual BdGridComponent? Parent
@@ -117,8 +117,6 @@ namespace BlazorDataGrid.Business.Components
                 if (value != _parent)
                 {
                     _parent = value;
-                    //InheritValues(_parent);
-                    //StyleChanged = true;
                 }
             }
         }
@@ -151,8 +149,6 @@ namespace BlazorDataGrid.Business.Components
             }
 
             builder ??= new StringBuilder();
-
-            builder.Append("border-radius:0; ");
 
             if (HorizontalContentAlignment.HasValue)
             {
@@ -193,20 +189,9 @@ namespace BlazorDataGrid.Business.Components
             StyleChanged = false;
         }
 
-        protected void InheritValues(BdGridComponent? ancestor)
-        {
-            if (ancestor == null)
-            {
-                return;
-            }
-
-            Style = ancestor.Style;
-        }
-
         protected override async Task OnParametersSetAsync()
         {
             await base.OnParametersSetAsync();
-            InheritValues(Parent);
             await BuildStyle();
         }
 

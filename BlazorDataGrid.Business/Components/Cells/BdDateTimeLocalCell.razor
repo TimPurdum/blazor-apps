@@ -1,0 +1,8 @@
+﻿@inherits BdInputCell<DateTime?>
+
+<input class="bd-input-cell"
+       type="datetime-local"
+       @bind="TypedValue"
+       @onfocusout="@FocusOut"
+       disabled="@(!IsEditable)"
+       style="@Style" />
