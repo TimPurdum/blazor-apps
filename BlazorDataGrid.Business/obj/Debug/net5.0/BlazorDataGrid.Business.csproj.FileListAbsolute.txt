@@ -49,4 +49,3 @@ C:\git\BlazorDataGrid\BlazorDataGrid.Business\obj\Debug\net5.0\Razor\Components\
 C:\git\BlazorDataGrid\BlazorDataGrid.Business\obj\Debug\net5.0\Razor\Components\Cells\BdInputCell.razor.g.cs
 C:\git\BlazorDataGrid\BlazorDataGrid.Business\obj\Debug\net5.0\scopedcss\Components\BdGridHeaderRow.razor.rz.scp.css
 C:\git\BlazorDataGrid\BlazorDataGrid.Business\obj\Debug\net5.0\scopedcss\Components\BdGridRow.razor.rz.scp.css
-C:\git\BlazorDataGrid\BlazorDataGrid.Business\obj\Debug\net5.0\scopedcss\Components\Cells\BdInputCell.razor.rz.scp.css

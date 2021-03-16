@@ -34,4 +34,8 @@
                 break;
         }
     }
+    @if (Grid.CanUserDeleteRows)
+    {
+        <button class="button-delete-row" @onclick="OnDeleteButtonClicked">-</button>
+    }
 </div>

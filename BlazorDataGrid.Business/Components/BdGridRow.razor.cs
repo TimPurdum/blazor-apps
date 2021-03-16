@@ -35,6 +35,9 @@ namespace BlazorDataGrid.Business.Components
 
         [Parameter]
         public EventCallback<ChangeEventArgs> RowValueChanged { get; set; }
+        
+        [Parameter]
+        public EventCallback<ChangeEventArgs> RowDeleted { get; set; }
 
         public override async Task BuildStyle(StringBuilder? builder = null)
         {
@@ -122,5 +125,10 @@ namespace BlazorDataGrid.Business.Components
         }
 
         private PropertyInfo[]? _itemTypeProperties;
+
+        private async Task OnDeleteButtonClicked()
+        {
+            await RowDeleted.InvokeAsync(new ChangeEventArgs{Value = Index});
+        }
     }
 }

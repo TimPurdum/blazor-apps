@@ -14,11 +14,17 @@
                                 <ItemContent>
                                     @if (item != null)
                                     {
-                                        <BdGridRow RowValueChanged="@OnRowValueChanged" Item="@item" Index="@ItemsSource.IndexOf(item)"/>
+                                        <BdGridRow RowValueChanged="@OnRowValueChanged" 
+                                                   RowDeleted="@OnRowDeleted"
+                                                   Item="@item" Index="@ItemsSource.IndexOf(item)"/>
                                     }
                                 </ItemContent>
                                 <Placeholder>Loading...</Placeholder>
                             </Virtualize>
+                            @if (CanUserAddRows)
+                            {
+                                <button class="button-add-row" @onclick="OnAddRowClicked">+</button>
+                            }
                         </div>
                     </CascadingValue>
                 </CascadingValue>

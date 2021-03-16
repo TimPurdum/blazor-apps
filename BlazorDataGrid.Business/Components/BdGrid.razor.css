@@ -13,9 +13,14 @@
 }
 
 .bd-grid-row-container {
-    /*overflow-y: auto;*/
-    /*overflow-x: hidden;*/
-    /*white-space: nowrap;*/
     height: 100%;
     min-width: 100%;
+}
+
+.button-add-row {
+    border: 1px solid darkgray;
+    padding: 4px;
+    background-color: lightgray;
+    width: 2em;
+    height: 2em;
 }

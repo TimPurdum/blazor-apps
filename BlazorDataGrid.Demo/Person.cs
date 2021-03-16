@@ -6,6 +6,8 @@ namespace BlazorDataGrid.Demo
 {
     public class Person : IEquatable<Person>, INotifyPropertyChanged
     {
+        public Person() {}
+        
         public int Age
         {
             get => _age;

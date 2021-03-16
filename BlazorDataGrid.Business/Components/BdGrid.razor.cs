@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BlazorDataGrid.Business.Components
 {
-    public partial class BdGrid<TItem>
+    public partial class BdGrid<TItem> where TItem: new()
     {
         public override event EventHandler<RowSourceChangedEventArgs>? RowSourceChanged;
 
@@ -64,9 +64,9 @@ namespace BlazorDataGrid.Business.Components
         [Parameter]
         public EventCallback<IList<TItem>> ItemsSourceChanged { get; set; }
 
-        public Virtualize<TItem> VirtualGrid { get; set; } = null!;
+        private Virtualize<TItem> VirtualGrid { get; set; } = null!;
 
-        public async void OnRowValueChanged(ChangeEventArgs e)
+        private async void OnRowValueChanged(ChangeEventArgs e)
         {
             if (!(e.Value is Tuple<int, TItem?> args) || args.Item2 == null || args.Item1 < 0 ||
                 args.Item1 > ItemsSource.Count - 1)
@@ -204,6 +204,31 @@ namespace BlazorDataGrid.Business.Components
 
         private readonly object _itemLock = new();
         private IList<TItem> _itemsSource = new ObservableCollection<TItem>();
+
+        private async Task OnAddRowClicked()
+        {
+            ClearItemPropertyHandlers();
+            lock (_itemLock)
+            {
+                ItemsSource.Add(new TItem());
+            }
+            
+            await ItemsSourceChanged.InvokeAsync(ItemsSource);
+            AddItemPropertyHandlers();
+        }
+
+
+        private async Task OnRowDeleted(ChangeEventArgs e)
+        {
+            ClearItemPropertyHandlers();
+            lock (_itemLock)
+            {
+                ItemsSource.RemoveAt((int) e.Value!);
+            }
+            
+            await ItemsSourceChanged.InvokeAsync(ItemsSource);
+            AddItemPropertyHandlers();
+        }
     }
 
     public class BdGridBase : BdGridComponent

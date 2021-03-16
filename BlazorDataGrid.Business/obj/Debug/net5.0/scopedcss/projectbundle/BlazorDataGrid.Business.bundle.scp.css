@@ -16,11 +16,16 @@
 }
 
 .bd-grid-row-container[b-femrk2m35u] {
-    /*overflow-y: auto;*/
-    /*overflow-x: hidden;*/
-    /*white-space: nowrap;*/
     height: 100%;
     min-width: 100%;
+}
+
+.button-add-row[b-femrk2m35u] {
+    border: 1px solid darkgray;
+    padding: 4px;
+    background-color: lightgray;
+    width: 2em;
+    height: 2em;
 }
 /* _content/BlazorDataGrid.Business/Components/BdGridHeaderRow.razor.rz.scp.css */
 .bd-grid-header-row[b-xsmwbfhify] {
@@ -40,17 +45,24 @@
 .bd-grid-row[b-6mpwzjro9r] {
     
 }
-/* _content/BlazorDataGrid.Business/Components/Cells/BdInputCell.razor.rz.scp.css */
-[b-ugkk3ez7ba] .bd-input-cell {
-    height: 100%;
+
+[b-6mpwzjro9r] .bd-input-cell {
     border-radius: 0;
     border-width: 2px;
     border-style: inset;
     border-color: rgb(118, 118, 118);
     border-image: initial;
     display: inline-block;
+    padding: 2px;
+    margin: 0;
 }
 
-[b-ugkk3ez7ba] .bd-checkbox-cell-wrapper {
+[b-6mpwzjro9r] .bd-checkbox-cell-wrapper {
     text-align: center;
+}
+
+.button-delete-row[b-6mpwzjro9r] {
+    width: 2em;
+    background-color: lightpink;
+    font-weight: bold;
 }

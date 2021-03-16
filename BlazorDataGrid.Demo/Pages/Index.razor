@@ -26,7 +26,7 @@
     <label>Can Delete Rows</label><input style="margin: 4px;" @bind="_canDelete" type="checkbox"/>
 </div>
 <br/>
-<BdGrid @bind-ItemsSource="@People" AutoGenerateColumns="@false" IsEditable="@_canEdit"
+<BdGrid TItem="Person" @bind-ItemsSource="@People" AutoGenerateColumns="@false" IsEditable="@_canEdit"
          Width="@_gridWidth" Height="500" RowHeight="40" ColumnDefinitions="@_columnDefinitions"
          CanUserAddRows="@_canAdd" CanUserDeleteRows="@_canDelete"/>
 
