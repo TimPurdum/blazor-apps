@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  default: 'TP-SURFACEBOOK-'
+  name: 'default'
 
 variables:
   buildConfiguration: 'Release'
