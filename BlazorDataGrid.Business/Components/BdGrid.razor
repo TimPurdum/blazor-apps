@@ -8,7 +8,7 @@
             <CascadingValue Name="RowHeight" Value="RowHeight">
                 <CascadingValue Name="RowHeightUnit" Value="RowHeightUnit">
                     <CascadingValue Name="Grid" Value="@this">
-                        <BdGridHeaderRow/>
+                        <BdGridHeaderRow HeaderWidthChanged="@OnHeaderWidthChanged" />
                         <div class="bd-grid-row-container">
                             <Virtualize @ref="VirtualGrid" Items="ItemsSource" Context="item">
                                 <ItemContent>
@@ -23,7 +23,7 @@
                             </Virtualize>
                             @if (CanUserAddRows)
                             {
-                                <button class="button-add-row" @onclick="OnAddRowClicked">+</button>
+                                <a href="" title="Add Row"><button class="button-add-row" @onclick="OnAddRowClicked">+</button></a>
                             }
                         </div>
                     </CascadingValue>

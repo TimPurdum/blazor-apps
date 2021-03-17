@@ -126,7 +126,7 @@ using System.Collections.ObjectModel;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
+#line 43 "C:\git\BlazorDataGrid\BlazorDataGrid.Demo\Pages\Index.razor"
        
     protected override void OnInitialized()
     {
@@ -323,11 +323,14 @@ using System.Collections.ObjectModel;
     };
 
     private int _gridWidth = 800;
+    private int _gridHeight = 500;
+    private int _rowHeight = 40;
     private string _jsonValue;
     private string _message = string.Empty;
     private bool _canEdit = false;
     private bool _canAdd = false;
     private bool _canDelete = false;
+    private bool _canResizeColumns = false;
 
 #line default
 #line hidden

@@ -1,13 +1,29 @@
 ﻿.bd-grid-header-row {
     position: -webkit-sticky; /* Safari */
     position: sticky;
+    background-color: lightgray;
     top: 0;
+    z-index: 1;
+    height: 2em;
 }
 
 .bd-grid-header-cell {
     display: inline-block;
+    position: relative;
     font-weight: bold;
     border: 1px solid darkgray;
     background-color: lightgray;
     padding: 1px 2px;
+    height: 100%;
+}
+
+.resizer-r {
+    display: inline-block;
+    cursor: col-resize;
+    position: absolute;
+    overflow: visible;
+    height: 800px;
+    right: 0;
+    top: 0;
+    width: 5px;
 }

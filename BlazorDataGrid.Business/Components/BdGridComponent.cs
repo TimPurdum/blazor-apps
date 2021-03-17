@@ -107,19 +107,7 @@ namespace BlazorDataGrid.Business.Components
         }
         
         public virtual bool? IsEditable { get; set; }
-
-        [Parameter]
-        public virtual BdGridComponent? Parent
-        {
-            get => _parent;
-            set
-            {
-                if (value != _parent)
-                {
-                    _parent = value;
-                }
-            }
-        }
+        
 
         [Parameter]
         public string Style { get; set; } = string.Empty;
@@ -141,7 +129,7 @@ namespace BlazorDataGrid.Business.Components
         }
 
 
-        public virtual async Task BuildStyle(StringBuilder? builder = null)
+        public virtual void BuildStyle(StringBuilder? builder = null)
         {
             if (!StyleChanged)
             {
@@ -192,7 +180,7 @@ namespace BlazorDataGrid.Business.Components
         protected override async Task OnParametersSetAsync()
         {
             await base.OnParametersSetAsync();
-            await BuildStyle();
+            BuildStyle();
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -207,7 +195,6 @@ namespace BlazorDataGrid.Business.Components
         private FontWeight? _fontWeight;
         private Color? _foregroundColor;
         private HorizontalAlignment? _horizontalContentAlignment;
-        private BdGridComponent? _parent;
         private VerticalAlignment? _verticalContentAlignment;
     }
 }

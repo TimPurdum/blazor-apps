@@ -31,7 +31,7 @@ namespace BlazorDataGrid.Business.Components
         public int RowHeight { get; set; }
 
         [CascadingParameter(Name = "RowHeightUnit")]
-        public MeasurementUnit? RowHeightUnit { get; set; }
+        public MeasurementUnit RowHeightUnit { get; set; }
 
         [Parameter]
         public EventCallback<ChangeEventArgs> RowValueChanged { get; set; }
@@ -39,7 +39,7 @@ namespace BlazorDataGrid.Business.Components
         [Parameter]
         public EventCallback<ChangeEventArgs> RowDeleted { get; set; }
 
-        public override async Task BuildStyle(StringBuilder? builder = null)
+        public override async void BuildStyle(StringBuilder? builder = null)
         {
             if (!StyleChanged)
             {
@@ -49,7 +49,8 @@ namespace BlazorDataGrid.Business.Components
             builder ??= new StringBuilder();
             if (RowHeightUnit != null)
             {
-                builder.Append($"height: {CssConverter.Measurement(RowHeightUnit.Value, RowHeight)}; ");
+                var height = CssConverter.Measurement(RowHeightUnit, RowHeight);
+                builder.Append($"height: {height}; line-height: {height};");
             }
 
             Style = builder.ToString();

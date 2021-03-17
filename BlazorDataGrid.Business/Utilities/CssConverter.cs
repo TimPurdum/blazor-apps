@@ -33,8 +33,6 @@
                 default:
                     return $"{value}px";
             }
-
-            return string.Empty;
         }
     }
 }

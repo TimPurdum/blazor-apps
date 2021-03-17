@@ -12,30 +12,32 @@
         {
             case null:
             case FieldType.Text:
-                <BdTextCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdTextCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
             case FieldType.Checkbox:
-                <BdCheckboxCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdCheckboxCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
             case FieldType.IntNumeric:
-                <BdIntNumericCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdIntNumericCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
             case FieldType.DoubleNumeric:
-                <BdDoubleNumericCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdDoubleNumericCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
             case FieldType.Date:
-                <BdDateCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdDateCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
             case FieldType.Time:
-                <BdTimeCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdTimeCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
             case FieldType.DateTimeLocal:
-                <BdDateTimeLocalCell Parent="@(this)" @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                <BdDateTimeLocalCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
                 break;
         }
     }
     @if (Grid.CanUserDeleteRows)
     {
-        <button class="button-delete-row" @onclick="OnDeleteButtonClicked">-</button>
+        <a href="" class="bd-cell-wrapper button-delete-row" title="@($"Delete Row {Index + 1}")">
+            <button @onclick="OnDeleteButtonClicked" class="button-delete-row">-</button>
+        </a>
     }
 </div>

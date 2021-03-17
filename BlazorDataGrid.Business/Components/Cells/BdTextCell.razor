@@ -1,11 +1,12 @@
 ﻿@inherits BdInputCell<string>
 
-<input class="bd-input-cell"
-       type="text"
-       @bind="TypedValue"
-       @onfocusout="@FocusOut"
-       disabled="@(!IsEditable)"
-       style="@Style"/>
+<div class="bd-cell-wrapper" style="@Style">
+    <input class="bd-input-cell"
+           type="text"
+           @bind="TypedValue"
+           @onfocusout="@FocusOut"
+           disabled="@(!IsEditable)" />
+</div>
        
 @code
 {

@@ -9,13 +9,17 @@
 <p>@_message</p>
 <textarea style="display: block; height:  200px; width: 600px;" value="@_jsonValue" @onchange="JsonChanged" />
 <br/>
-<label>Grid Width</label>
-<input @bind="_gridWidth"/>Width: @_gridWidth
+<label>Grid Width (px):</label>
+<input @bind="_gridWidth"/>
+<label>&nbsp;Grid Height (px):</label>
+<input @bind="_gridHeight" />
+<label>&nbsp;Row Height (px):</label>
+<input @bind="_rowHeight" />
 <br/>
 <label>First Row, First Name</label>
 <input @bind="@People[0].FirstName"/>
 <br/>
-<button @onclick="AddPerson">Add Person</button>
+<button @onclick="AddPerson">Add Person</button><br/>
 <div style="border: 1px solid black; display: inline-block">
     <label>Can Edit</label><input style="margin: 4px;" @bind="_canEdit" type="checkbox"/>
 </div>
@@ -26,9 +30,14 @@
     <label>Can Delete Rows</label><input style="margin: 4px;" @bind="_canDelete" type="checkbox"/>
 </div>
 <br/>
+<div style="border: 1px solid black; display: inline-block">
+    <label>Can Resize Columns</label><input style="margin: 4px;" @bind="_canResizeColumns" type="checkbox"/>
+</div>
+<br/>
 <BdGrid TItem="Person" @bind-ItemsSource="@People" AutoGenerateColumns="@false" IsEditable="@_canEdit"
-         Width="@_gridWidth" Height="500" RowHeight="40" ColumnDefinitions="@_columnDefinitions"
-         CanUserAddRows="@_canAdd" CanUserDeleteRows="@_canDelete"/>
+        Width="@_gridWidth" Height="@_gridHeight" RowHeight="@_rowHeight"
+        ColumnDefinitions="@_columnDefinitions" CanUserResizeColumns="@_canResizeColumns"
+        CanUserAddRows="@_canAdd" CanUserDeleteRows="@_canDelete"/>
 
 
 @code {
@@ -227,9 +236,12 @@
     };
 
     private int _gridWidth = 800;
+    private int _gridHeight = 500;
+    private int _rowHeight = 40;
     private string _jsonValue;
     private string _message = string.Empty;
     private bool _canEdit = false;
     private bool _canAdd = false;
     private bool _canDelete = false;
+    private bool _canResizeColumns = false;
 }

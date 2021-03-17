@@ -41,7 +41,7 @@ namespace BlazorDataGrid.Business.Components
             }
         }
 
-        public override async Task BuildStyle(StringBuilder? builder = null)
+        public override void BuildStyle(StringBuilder? builder = null)
         {
             if (!StyleChanged)
             {
@@ -50,7 +50,7 @@ namespace BlazorDataGrid.Business.Components
 
             builder ??= new StringBuilder();
             builder.Append($"width:{CssConverter.ColumnWidthMeasurement(WidthUnit, Width)}; ");
-            await base.BuildStyle(builder);
+            base.BuildStyle(builder);
             StyleChanged = false;
         }
 

@@ -43,9 +43,9 @@ namespace BlazorDataGrid.Business.Components.Cells
         [CascadingParameter(Name = "Grid")]
         public BdGridBase Grid { get; set; } = null!;
 
-        public override async Task BuildStyle(StringBuilder? builder = null)
+        public override void BuildStyle(StringBuilder? builder = null)
         {
-            await ColumnDefinition.BuildStyle(builder);
+            ColumnDefinition.BuildStyle(builder);
             Style = ColumnDefinition.Style;
             IsEditable = (Grid.IsEditable ?? false) && (ColumnDefinition.IsEditable ?? false);
         }

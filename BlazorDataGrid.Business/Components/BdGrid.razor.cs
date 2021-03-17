@@ -66,7 +66,7 @@ namespace BlazorDataGrid.Business.Components
 
         private Virtualize<TItem> VirtualGrid { get; set; } = null!;
 
-        private async void OnRowValueChanged(ChangeEventArgs e)
+        private async Task OnRowValueChanged(ChangeEventArgs e)
         {
             if (!(e.Value is Tuple<int, TItem?> args) || args.Item2 == null || args.Item1 < 0 ||
                 args.Item1 > ItemsSource.Count - 1)
@@ -87,6 +87,12 @@ namespace BlazorDataGrid.Business.Components
                 StateHasChanged();
                 AddItemPropertyHandlers();
             });
+        }
+
+
+        private async Task OnHeaderWidthChanged()
+        {
+            await InvokeAsync(StateHasChanged);
         }
 
 
@@ -186,7 +192,7 @@ namespace BlazorDataGrid.Business.Components
             }
         }
 
-        private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private async void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             int index;
             TItem item;
@@ -198,7 +204,7 @@ namespace BlazorDataGrid.Business.Components
                 index = ItemsSource.IndexOf(item);
             }
 
-            OnRowValueChanged(new ChangeEventArgs {Value = new Tuple<int, TItem?>(index, item)});
+            await OnRowValueChanged(new ChangeEventArgs {Value = new Tuple<int, TItem?>(index, item)});
             RowSourceChanged?.Invoke(this, new RowSourceChangedEventArgs(index));
         }
 
@@ -252,10 +258,10 @@ namespace BlazorDataGrid.Business.Components
         public MeasurementUnit? HeightUnit { get; set; } = MeasurementUnit.Pixel;
 
         [Parameter]
-        public int RowHeight { get; set; }
+        public int RowHeight { get; set; } = 40;
 
         [Parameter]
-        public MeasurementUnit? RowHeightUnit { get; set; }
+        public MeasurementUnit RowHeightUnit { get; set; } = MeasurementUnit.Pixel;
 
         [Parameter]
         public int Width
@@ -276,16 +282,19 @@ namespace BlazorDataGrid.Business.Components
         public MeasurementUnit? WidthUnit { get; set; } = MeasurementUnit.Pixel;
 
         [Parameter]
-        public bool CanUserAddRows { get; set; } = false;
+        public bool CanUserAddRows { get; set; }
 
         [Parameter]
-        public bool CanUserDeleteRows { get; set; } = false;
+        public bool CanUserDeleteRows { get; set; }
         
         [Parameter]
         public override bool? IsEditable { get; set; }
+        
+        [Parameter]
+        public bool CanUserResizeColumns { get; set; }
 
 
-        public override async Task BuildStyle(StringBuilder? builder = null)
+        public override void BuildStyle(StringBuilder? builder = null)
         {
             if (!StyleChanged)
             {
