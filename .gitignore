@@ -1,5 +1,5 @@
-﻿/BlazorDataGrid.Business/bin/
-/BlazorDataGrid.Business/obj/
-/BlazorDataGrid.Demo/bin/
-/BlazorDataGrid.Demo/obj/
-*.g.cs
+﻿*.g.cs
+*/.idea/
+*/.vs/
+*/bin/
+*/obj/
