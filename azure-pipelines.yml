@@ -23,13 +23,13 @@ steps:
     zipAfterPublish: false
 - task: CopyFilesOverSSH@0
   inputs:
-    sshEndpoint: 104.215.77.81
+    sshEndpoint: tyrin@104.215.77.81
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
     contents: '**'
     targetFolder: '/var/www'
 
 - task: SSH@0
   inputs:
-    sshEndpoint: 104.215.77.81
+    sshEndpoint: tyrin@104.215.77.81
     runOptions: 'commands'
     commands: 'sudo systemctl restart blazor-data-grid.service'
