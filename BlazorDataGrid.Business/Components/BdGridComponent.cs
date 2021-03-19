@@ -8,7 +8,6 @@ namespace BlazorDataGrid.Business.Components
 {
     public abstract class BdGridComponent : ComponentBase
     {
-        [Parameter]
         public Color? BackgroundColor
         {
             get => _backgroundColor;

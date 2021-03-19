@@ -49,7 +49,7 @@
 
     private void JsonChanged(ChangeEventArgs e)
     {
-        _jsonValue = e.Value?.ToString();
+        _jsonValue = e?.Value?.ToString();
         if (_jsonValue == null) return;
         try
         {
@@ -238,7 +238,7 @@
     private int _gridWidth = 800;
     private int _gridHeight = 500;
     private int _rowHeight = 40;
-    private string _jsonValue;
+    private string? _jsonValue;
     private string _message = string.Empty;
     private bool _canEdit = false;
     private bool _canAdd = false;

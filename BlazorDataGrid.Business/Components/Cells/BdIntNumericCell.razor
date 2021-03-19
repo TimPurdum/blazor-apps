@@ -5,6 +5,7 @@
            type="number"
            step="1"
            @bind="TypedValue"
+           @onfocusin="@FocusIn"
            @onfocusout="@FocusOut"
            disabled="@(!IsEditable)" />
 </div>

@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace BlazorDataGrid.Business.Utilities
 {
-    public class ObservableDictionary<TKey, TValue> : IDictionary, INotifyCollectionChanged, INotifyPropertyChanged
+    public class ObservableDictionary<TKey, TValue> : IDictionary, INotifyCollectionChanged
         where TKey : notnull
     {
         public void Add(object key, object? value)
@@ -91,8 +91,6 @@ namespace BlazorDataGrid.Business.Utilities
         public bool IsSynchronized => true;
         public object SyncRoot { get; } = new();
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public bool ContainsKey(TKey key)
         {
             return _internalDict.ContainsKey(key);

@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlazorDataGrid.Business.Components
@@ -35,7 +36,7 @@ namespace BlazorDataGrid.Business.Components
 
         [Parameter]
         public EventCallback<ChangeEventArgs> RowValueChanged { get; set; }
-        
+
         [Parameter]
         public EventCallback<ChangeEventArgs> RowDeleted { get; set; }
 
@@ -47,11 +48,8 @@ namespace BlazorDataGrid.Business.Components
             }
 
             builder ??= new StringBuilder();
-            if (RowHeightUnit != null)
-            {
-                var height = CssConverter.Measurement(RowHeightUnit, RowHeight);
-                builder.Append($"height: {height}; line-height: {height};");
-            }
+            var height = CssConverter.Measurement(RowHeightUnit, RowHeight);
+            builder.Append($"height: {height}; line-height: {height};");
 
             Style = builder.ToString();
             StyleChanged = false;
@@ -85,6 +83,9 @@ namespace BlazorDataGrid.Business.Components
 
         private async void OnFieldValuesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
+            _cts.Cancel();
+            _cts = new CancellationTokenSource();
+            var token = _cts.Token;
             if (e.NewItems == null)
             {
                 return;
@@ -98,8 +99,10 @@ namespace BlazorDataGrid.Business.Components
 
             await InvokeAsync(async () =>
             {
+                if (token.IsCancellationRequested) return;
+                GetFieldValues();
                 await RowValueChanged.InvokeAsync(new ChangeEventArgs {Value = new Tuple<int, TItem?>(Index, Item)});
-                FieldValues.CollectionChanged += OnFieldValuesCollectionChanged;
+                _cts.Cancel();
             });
         }
 
@@ -131,5 +134,7 @@ namespace BlazorDataGrid.Business.Components
         {
             await RowDeleted.InvokeAsync(new ChangeEventArgs{Value = Index});
         }
+
+        private CancellationTokenSource _cts = new CancellationTokenSource();
     }
 }

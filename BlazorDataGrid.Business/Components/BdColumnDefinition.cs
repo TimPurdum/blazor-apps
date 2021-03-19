@@ -7,7 +7,6 @@ namespace BlazorDataGrid.Business.Components
 {
     public class BdColumnDefinition: BdGridComponent
     {
-        [Parameter]
         public override bool? IsEditable { get; set; }
         public string BindingField { get; set; } = null!;
 

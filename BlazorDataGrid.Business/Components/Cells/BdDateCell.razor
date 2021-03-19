@@ -4,6 +4,7 @@
     <input class="bd-input-cell"
            type="date"
            @bind="@TypedValue"
+           @onfocusin="@FocusIn"
            @onfocusout="@FocusOut"
            disabled="@(!IsEditable)" />
 </div>

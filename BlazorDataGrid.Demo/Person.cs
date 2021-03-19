@@ -59,7 +59,7 @@ namespace BlazorDataGrid.Demo
             }
         }
 
-        public bool Equals(Person other)
+        public bool Equals(Person? other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -75,9 +75,9 @@ namespace BlazorDataGrid.Demo
                 LastName == other.LastName && other.IsEmployed == IsEmployed;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
             {
@@ -102,7 +102,7 @@ namespace BlazorDataGrid.Demo
             return HashCode.Combine(Age, DateOfBirth, FirstName, LastName);
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

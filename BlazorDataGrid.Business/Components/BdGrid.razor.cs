@@ -1,10 +1,13 @@
 ﻿using BlazorDataGrid.Business.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
+using Microsoft.JSInterop;
+using Microsoft.JSInterop.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,9 +16,10 @@ using System.Threading.Tasks;
 
 namespace BlazorDataGrid.Business.Components
 {
-    public partial class BdGrid<TItem> where TItem: new()
+    public partial class BdGrid<TItem> where TItem : new()
     {
         public override event EventHandler<RowSourceChangedEventArgs>? RowSourceChanged;
+
 
         [Parameter]
         public IList<TItem> ItemsSource
@@ -29,6 +33,11 @@ namespace BlazorDataGrid.Business.Components
             }
             set
             {
+                if (_preventRefresh)
+                {
+                    _preventRefresh = false;
+                    return;
+                };
                 IList<TItem> tempSource;
                 ClearItemPropertyHandlers();
                 lock (_itemLock)
@@ -49,7 +58,7 @@ namespace BlazorDataGrid.Business.Components
                                 _itemsSource = tempSource;
                             }
 
-                            await InvokeAsync(() =>
+                            await InvokeAsync( () =>
                             {
                                 StateHasChanged();
                                 AddItemPropertyHandlers();
@@ -63,8 +72,6 @@ namespace BlazorDataGrid.Business.Components
 
         [Parameter]
         public EventCallback<IList<TItem>> ItemsSourceChanged { get; set; }
-
-        private Virtualize<TItem> VirtualGrid { get; set; } = null!;
 
         private async Task OnRowValueChanged(ChangeEventArgs e)
         {
@@ -81,11 +88,11 @@ namespace BlazorDataGrid.Business.Components
                 ItemsSource[args.Item1] = args.Item2;
             }
 
+            _preventRefresh = true;
+            
             await InvokeAsync(async () =>
             {
                 await ItemsSourceChanged.InvokeAsync(ItemsSource);
-                StateHasChanged();
-                AddItemPropertyHandlers();
             });
         }
 
@@ -121,7 +128,7 @@ namespace BlazorDataGrid.Business.Components
                             Header = (prop.GetCustomAttribute(typeof(DisplayNameAttribute)) as DisplayNameAttribute)?
                                 .DisplayName ?? prop.Name,
                             FieldType = SetFieldType(prop.PropertyType),
-                            IsEditable = this.IsEditable
+                            IsEditable = IsEditable
                         };
                         ColumnDefinitions.Add(col);
                     }
@@ -208,9 +215,6 @@ namespace BlazorDataGrid.Business.Components
             RowSourceChanged?.Invoke(this, new RowSourceChangedEventArgs(index));
         }
 
-        private readonly object _itemLock = new();
-        private IList<TItem> _itemsSource = new ObservableCollection<TItem>();
-
         private async Task OnAddRowClicked()
         {
             ClearItemPropertyHandlers();
@@ -218,7 +222,7 @@ namespace BlazorDataGrid.Business.Components
             {
                 ItemsSource.Add(new TItem());
             }
-            
+
             await ItemsSourceChanged.InvokeAsync(ItemsSource);
             AddItemPropertyHandlers();
         }
@@ -231,10 +235,15 @@ namespace BlazorDataGrid.Business.Components
             {
                 ItemsSource.RemoveAt((int) e.Value!);
             }
-            
+
             await ItemsSourceChanged.InvokeAsync(ItemsSource);
             AddItemPropertyHandlers();
         }
+
+        private readonly object _itemLock = new();
+        private IList<TItem> _itemsSource = new ObservableCollection<TItem>();
+        private Virtualize<TItem> VirtualGrid { get; set; } = null!;
+        private bool _preventRefresh;
     }
 
     public class BdGridBase : BdGridComponent
@@ -249,6 +258,15 @@ namespace BlazorDataGrid.Business.Components
         public bool AutoGenerateColumns { get; set; } = true;
 
         [Parameter]
+        public bool CanUserAddRows { get; set; }
+
+        [Parameter]
+        public bool CanUserDeleteRows { get; set; }
+
+        [Parameter]
+        public bool CanUserResizeColumns { get; set; }
+
+        [Parameter]
         public IList<BdColumnDefinition> ColumnDefinitions { get; set; } = new List<BdColumnDefinition>();
 
         [Parameter]
@@ -256,6 +274,9 @@ namespace BlazorDataGrid.Business.Components
 
         [Parameter]
         public MeasurementUnit? HeightUnit { get; set; } = MeasurementUnit.Pixel;
+
+        [Parameter]
+        public override bool? IsEditable { get; set; }
 
         [Parameter]
         public int RowHeight { get; set; } = 40;
@@ -280,18 +301,6 @@ namespace BlazorDataGrid.Business.Components
 
         [Parameter]
         public MeasurementUnit? WidthUnit { get; set; } = MeasurementUnit.Pixel;
-
-        [Parameter]
-        public bool CanUserAddRows { get; set; }
-
-        [Parameter]
-        public bool CanUserDeleteRows { get; set; }
-        
-        [Parameter]
-        public override bool? IsEditable { get; set; }
-        
-        [Parameter]
-        public bool CanUserResizeColumns { get; set; }
 
 
         public override void BuildStyle(StringBuilder? builder = null)

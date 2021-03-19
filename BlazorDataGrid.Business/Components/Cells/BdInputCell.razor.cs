@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,13 +49,18 @@ namespace BlazorDataGrid.Business.Components.Cells
             IsEditable = (Grid.IsEditable ?? false) && (ColumnDefinition.IsEditable ?? false);
         }
 
-        protected async Task FocusOut(FocusEventArgs obj)
+        protected async Task FocusOut()
         {
-            if (_valueChanged)
+            if (_valueChanged || Value != _originalValue)
             {
                 _valueChanged = false;
                 await ValueChanged.InvokeAsync(Value);
             }
+        }
+        
+        protected void FocusIn()
+        {
+            _originalValue = Value;
         }
 
         protected override void OnAfterRender(bool firstRender)
@@ -67,5 +71,6 @@ namespace BlazorDataGrid.Business.Components.Cells
 
         private T _typedValue = default!;
         private bool _valueChanged;
+        private object? _originalValue;
     }
 }
