@@ -32,4 +32,4 @@ steps:
   inputs:
     sshEndpoint: 'CRT-VM-1'
     runOptions: 'commands'
-    commands: 'sudo systemctl restart blazor-data-grid.service'
+    commands: 'sudo systemctl restart blazor-apps.service'
