@@ -1,0 +1,41 @@
+﻿@inherits BlazorDataGrid.Components.BdGridComponent
+
+@typeparam TItem
+
+<div class="bd-grid-row" style="@Style">
+    @foreach (var columnDefinition in ColumnDefinitions)
+    {
+        if (Item == null) return;
+        switch (columnDefinition.FieldType)
+        {
+            case null:
+            case FieldType.Text:
+                <BdTextCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+            case FieldType.Checkbox:
+                <BdCheckboxCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+            case FieldType.IntNumeric:
+                <BdIntNumericCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+            case FieldType.DoubleNumeric:
+                <BdDoubleNumericCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+            case FieldType.Date:
+                <BdDateCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+            case FieldType.Time:
+                <BdTimeCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+            case FieldType.DateTimeLocal:
+                <BdDateTimeLocalCell @bind-Value="FieldValues[columnDefinition.BindingField]" ColumnDefinition="@columnDefinition"/>
+                break;
+        }
+    }
+    @if (Grid.CanUserDeleteRows)
+    {
+        <a href="" class="bd-cell-wrapper button-delete-row" title="@($"Delete Row {Index + 1}")">
+            <button @onclick="OnDeleteButtonClicked" class="button-delete-row">-</button>
+        </a>
+    }
+</div>
