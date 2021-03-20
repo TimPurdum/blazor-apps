@@ -23,13 +23,13 @@ steps:
     zipAfterPublish: false
 - task: CopyFilesOverSSH@0
   inputs:
-    sshEndpoint: 'BitnamiSSH-BlazorDataGrid'
+    sshEndpoint: 'CRT-VM-1'
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
     contents: '**'
     targetFolder: '/var/www'
 
 - task: SSH@0
   inputs:
-    sshEndpoint: 'BitnamiSSH-BlazorDataGrid'
+    sshEndpoint: 'CRT-VM-1'
     runOptions: 'commands'
     commands: 'sudo systemctl restart blazor-data-grid.service'
