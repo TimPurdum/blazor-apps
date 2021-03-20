@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDataGrid.Business.Components.Cells
+namespace BlazorApps.BlazorDataGrid.Components.Cells
 {
     public partial class BdInputCell<T>
     {
