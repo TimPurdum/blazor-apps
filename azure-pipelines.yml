@@ -35,6 +35,7 @@ steps:
     sshEndpoint: 'CRT-VM-1'
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
     contents: '**/BlazorApps.Demo.Wasm/wwwroot/**/*'
+    flattenFolders: true
     targetFolder: '/usr/share/wordpress'
 
 
