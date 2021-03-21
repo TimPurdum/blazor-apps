@@ -27,14 +27,14 @@ steps:
   inputs:
     sshEndpoint: 'CRT-VM-1'
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
-    contents: '**/BlazorApps.Demo/*'
+    contents: '**/BlazorApps.Demo/**/*'
     targetFolder: '/var/www'
 
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'CRT-VM-1'
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
-    contents: '**/BlazorApps.Demo.Wasm/wwwroot/*'
+    contents: '**/BlazorApps.Demo.Wasm/wwwroot/**/*'
     targetFolder: '/usr/share/wordpress'
 
 
