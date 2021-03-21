@@ -15,18 +15,28 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: false
+
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'CRT-VM-1'
     sourceFolder: '$(Build.ArtifactStagingDirectory)'
-    contents: '**'
-    targetFolder: '/var/www'
+    contents: '*/BlazorApps.Demo/*'
+    targetFolder: '/var/www/BlazorApps.Demo'
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'CRT-VM-1'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    contents: '/BlazorApps.Demo.Wasm/wwwroot/'
+    targetFolder: '/usr/share/wordpress'
+
 
 - task: SSH@0
   inputs:

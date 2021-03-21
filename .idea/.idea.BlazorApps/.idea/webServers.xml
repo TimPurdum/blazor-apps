@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5a1952d2-d2ef-4bc8-bfa8-1616ba8fbe63" name="CRT-VM-1" url="https://tocode.software">
+        <fileTransfer rootFolder="/usr/share/wordpress/blazor" accessType="SFTP" host="52.176.166.255" port="22" sshConfigId="0993ec54-89d2-4cab-8a5e-39162c624d32" sshConfig="tyrin@52.176.166.255:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" muteSftpMessages="true" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

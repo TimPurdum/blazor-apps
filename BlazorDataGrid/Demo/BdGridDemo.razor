@@ -1,0 +1,241 @@
+﻿<h1>Blazor Data Grid Demo!</h1>
+<label>Change JSON to see changes in Grid</label>
+<p>@_message</p>
+<textarea style="display: block; height:  200px; width: 600px;" value="@_jsonValue" @onchange="JsonChanged" />
+<br/>
+<label>Grid Width (px):</label>
+<input @bind="_gridWidth"/>
+<label>&nbsp;Grid Height (px):</label>
+<input @bind="_gridHeight" />
+<label>&nbsp;Row Height (px):</label>
+<input @bind="_rowHeight" />
+<br/>
+<label>First Row, First Name</label>
+<input @bind="@People[0].FirstName"/>
+<br/>
+<button @onclick="AddPerson">Add Person</button><br/>
+<button class="checkbox-div" @onclick="() => _canEdit = !_canEdit">
+    <label>Can Edit</label><input style="margin: 4px;" @bind="_canEdit" type="checkbox"/>
+</button>
+<button class="checkbox-div" @onclick="() => _canAdd = !_canAdd">
+    <label>Can Add Rows</label><input style="margin: 4px;" @bind="_canAdd" type="checkbox"/>
+</button>
+<button class="checkbox-div" @onclick="() => _canDelete = !_canDelete">
+    <label>Can Delete Rows</label><input style="margin: 4px;" @bind="_canDelete" type="checkbox"/>
+</button>
+<br/>
+<button class="checkbox-div" @onclick="() => _canResizeColumns = !_canResizeColumns">
+    <label>Can Resize Columns</label><input style="margin: 4px;" @bind="_canResizeColumns" type="checkbox"/>
+</button>
+<br/>
+<BdGrid TItem="Person" @bind-ItemsSource="@People" AutoGenerateColumns="@false" IsEditable="@_canEdit"
+        Width="@_gridWidth" Height="@_gridHeight" RowHeight="@_rowHeight"
+        ColumnDefinitions="@_columnDefinitions" CanUserResizeColumns="@_canResizeColumns"
+        CanUserAddRows="@_canAdd" CanUserDeleteRows="@_canDelete"/>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _jsonValue = JsonSerializer.Serialize(_people);
+    }
+
+    private void JsonChanged(ChangeEventArgs e)
+    {
+        _jsonValue = e?.Value?.ToString();
+        if (_jsonValue == null) return;
+        try
+        {
+            var newPeople = JsonSerializer.Deserialize<ObservableCollection<Person>>(_jsonValue);
+            if (newPeople == null) return;
+            _people.Clear();
+            foreach (var person in newPeople)
+            {
+                _people.Add(person);
+            }
+        }
+        catch
+        {
+            _message = "Invalid JSON";
+        }
+    }
+
+    private void AddPerson()
+    {
+        _people.Add(new Person
+        {
+            FirstName = "Noob",
+            LastName = "Guy",
+            Age = 0,
+            DateOfBirth = DateTime.Now
+        });
+    }
+    
+    private readonly IList<BdColumnDefinition> _columnDefinitions = new List<BdColumnDefinition>
+    {
+        new()
+        {
+            BindingField = "FirstName",
+            Header = "First Name",
+            Width = 200,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            IsEditable = true
+        },
+        new()
+        {
+            BindingField = "LastName",
+            Header = "Family Name",
+            BackgroundColor = Color.Chartreuse,
+            Width = 200,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            IsEditable = true
+        },
+        new()
+        {
+            BindingField = "DateOfBirth",
+            Header = "DOB",
+            Width = 200,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            FieldType = FieldType.Date,
+            IsEditable = true
+        },
+        new ()
+        {
+            BindingField = "Age",
+            Header = "Age",
+            Width = 60,
+            FieldType = FieldType.IntNumeric,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            IsEditable = true
+        },
+        new()
+        {
+            BindingField = nameof(Person.IsEmployed),
+            Header = "Employed",
+            Width = 100,
+            WidthUnit = ColumnMeasurementUnit.Pixel,
+            FieldType = FieldType.Checkbox,
+            IsEditable = true
+        }
+    };
+
+    private IList<Person> People
+    {
+        get => _people;
+        set
+        {
+            _people = value;
+            _jsonValue = JsonSerializer.Serialize(_people);
+        }
+    }
+    
+    private IList<Person> _people = new ObservableCollection<Person>
+    {
+        new()
+        {
+            FirstName = "Joe",
+            LastName = "Smith",
+            Age = 43,
+            DateOfBirth = new DateTime(1977, 7, 15),
+            IsEmployed = true
+        },
+        new()
+        {
+            FirstName = "Jane",
+            LastName = "Doe",
+            Age = 44,
+            DateOfBirth = new DateTime(1976, 4, 12)
+        },
+        new()
+        {
+            FirstName = "Max",
+            LastName = "Power",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 3, 3),
+            IsEmployed = true
+        },
+        new()
+        {
+            FirstName = "Sally",
+            LastName = "Snee",
+            Age = 33,
+            DateOfBirth = new DateTime(1987, 6, 18),
+            IsEmployed = true
+        },
+        new()
+        {
+            FirstName = "Paul",
+            LastName = "Bunyan",
+            Age = 100,
+            DateOfBirth = new DateTime(1921, 11, 21)
+        },
+        new()
+        {
+            FirstName = "John",
+            LastName = "Doe",
+            Age = 67,
+            DateOfBirth = new DateTime(1953, 8, 10)
+        },
+        new()
+        {
+            FirstName = "Gerry",
+            LastName = "Guggenheim",
+            Age = 41,
+            DateOfBirth = new DateTime(1979, 3, 5),
+            IsEmployed = true
+        },
+        new()
+        {
+            FirstName = "Max",
+            LastName = "Power",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 3, 3)
+        },
+        new()
+        {
+            FirstName = "Lucy",
+            LastName = "Locket",
+            Age = 8,
+            DateOfBirth = new DateTime(2012, 5, 24)
+        },
+        new()
+        {
+            FirstName = "Jack",
+            LastName = "Smith",
+            Age = 56,
+            DateOfBirth = new DateTime(1974, 1, 1)
+        },
+        new()
+        {
+            FirstName = "Max",
+            LastName = "Power",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 3, 3)
+        },
+        new()
+        {
+            FirstName = "Max",
+            LastName = "Power",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 3, 3)
+        },
+        new()
+        {
+            FirstName = "Max",
+            LastName = "Power",
+            Age = 14,
+            DateOfBirth = new DateTime(2006, 3, 3)
+        }
+    };
+
+    private int _gridWidth = 800;
+    private int _gridHeight = 500;
+    private int _rowHeight = 40;
+    private string? _jsonValue;
+    private string _message = string.Empty;
+    private bool _canEdit = false;
+    private bool _canAdd = false;
+    private bool _canDelete = false;
+    private bool _canResizeColumns = false;
+}
