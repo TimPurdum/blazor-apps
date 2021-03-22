@@ -1,12 +1,8 @@
 using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace BlazorApps.Demo.Wasm
 {
@@ -15,7 +11,8 @@ namespace BlazorApps.Demo.Wasm
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
+            builder.RootComponents
+                .Add<BlazorDataGrid.Demo.BdGridDemo>("#blazor-data-grid");
 
             builder.Services.AddScoped(
                 sp => new HttpClient {BaseAddress = new Uri(new Uri(builder.HostEnvironment.BaseAddress).Host)});

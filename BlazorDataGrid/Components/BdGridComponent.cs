@@ -104,9 +104,9 @@ namespace BlazorApps.BlazorDataGrid.Components
                 }
             }
         }
-        
+
         public virtual bool? IsEditable { get; set; }
-        
+
 
         [Parameter]
         public string Style { get; set; } = string.Empty;

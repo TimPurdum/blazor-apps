@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApps.BlazorDataGrid.Components.Cells
 {
-    public partial class BdInputCell<T>
+    public class BdInputCell<T>: BdGridComponent
     {
         [Parameter]
         public BdColumnDefinition ColumnDefinition { get; set; } = null!;

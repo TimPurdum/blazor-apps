@@ -243,13 +243,9 @@ namespace BlazorApps.BlazorDataGrid.Components
         private bool _preventRefresh;
     }
 
-    public class BdGridBase : BdGridComponent
+    public abstract class BdGridBase : BdGridComponent
     {
-        public virtual event EventHandler<RowSourceChangedEventArgs>? RowSourceChanged
-        {
-            add => throw new NotImplementedException();
-            remove => throw new NotImplementedException();
-        }
+        public abstract event EventHandler<RowSourceChangedEventArgs>? RowSourceChanged;
 
         [Parameter]
         public bool AutoGenerateColumns { get; set; } = true;
