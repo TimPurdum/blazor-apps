@@ -1,0 +1,41 @@
+@using Microsoft.JSInterop
+@using BlazorApps.BlazorMusicKeyboard
+@using BlazorApps.BlazorDataGrid.Demo
+@using Microsoft.AspNetCore.Components.Rendering
+@using System.Diagnostics
+@inject IJSRuntime JsRuntime
+
+@ChildContent
+@if (_components["blazor-data-grid"] != null)
+{
+    <BdGridDemo />
+}
+else if (_components["blazor-music-keyboard"] != null)
+{
+    <MusicKeyboardDemo />
+}
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        foreach (var key in _components.Keys)
+        {
+            if (_components[key] == null)
+            {
+                _components[key] = await  
+                    JsRuntime.InvokeAsync<string>("checkForBlazorComponentId", key);
+            }
+            
+        }
+    }
+
+    private readonly Dictionary<string, string> _components = new()
+    {
+        {"blazor-data-grid", null},
+        {"blazor-music-keyboard", null}
+    };
+}

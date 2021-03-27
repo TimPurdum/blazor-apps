@@ -615,3 +615,11 @@ C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\bin\Debug\net5.0\wwwroot\_framework
 C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\bin\Debug\net5.0\wwwroot\_framework\BlazorApps.BlazorMusicKeyboard.dll
 C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\bin\Debug\net5.0\wwwroot\_framework\BlazorApps.BlazorMusicKeyboard.pdb
 C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\build-gz\edDTP2fp.gz
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\BlazorApps.Demo.Wasm.RazorComponent.input.cache
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\RazorDeclaration\Root.razor.g.cs
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\BlazorApps.Demo.Wasm.RazorComponent.output.cache
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\RazorDeclaration\BlazorApps.Demo.Wasm.dll
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\BlazorApps.Demo.Wasm.TagHelpers.input.cache
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\BlazorApps.Demo.Wasm.TagHelpers.output.cache
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\BlazorApps.Demo.Wasm.RazorCoreGenerate.cache
+C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\Razor\Root.razor.g.cs
