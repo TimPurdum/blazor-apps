@@ -1,0 +1,21 @@
+@using BlazorApps.BlazorMusicKeyboard.Model
+
+<audio id="@KeyBarModel.BarId" src="_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/Sounds/@KeyBarModel.SoundFile"></audio>
+<button @onmousedown="Click" class="@BarClass" style="height: @(Height)%; width: @(Width)%;">@KeyBarModel.Label</button>
+@code {
+    [Parameter]
+    public KeyBarModel KeyBarModel { get; set; }
+    [Parameter]
+    public int Height { get; set; }
+    [Parameter]
+    public int Width { get; set; }
+    [Parameter]
+    public string BarClass { get; set; }
+    [CascadingParameter(Name = "SoundPlayer")]
+    public SoundPlayer SoundPlayer { get; set; }
+
+    private async Task Click()
+    {
+        await SoundPlayer.Play(KeyBarModel.BarId);
+    }
+}

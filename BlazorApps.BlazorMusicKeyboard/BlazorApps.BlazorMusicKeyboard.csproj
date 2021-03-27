@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <LangVersion>default</LangVersion>
+        <Nullable>enable</Nullable>
+        <PackageId>CedarRiverTech.BlazorApps.BlazorMusicKeyboard</PackageId>
+        <Authors>Tim Purdum</Authors>
+        <Company>Cedar River Tech</Company>
+        <Description>
+            The Blazor Music Keyboard
+        </Description>
+        <AssemblyVersion>1</AssemblyVersion>
+        <FileVersion>1</FileVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Blazor Music Keyboard</Title>
+        <Copyright>Copyright © 2021 by Cedar River Tech</Copyright>
+        <PackageProjectUrl>https://demo.tocode.software/musickeyboard</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/TimPurdum/blazor-apps/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/TimPurdum/blazor-apps</RepositoryUrl>
+        <PackageTags>Music, Blazor</PackageTags>
+    </PropertyGroup>
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.3" />
+    </ItemGroup>
+</Project>

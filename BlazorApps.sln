@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Demo", "BlazorApps.Demo\BlazorApps.Demo.csproj", "{E8DA4A4E-D680-4D18-A319-19ABB9C9975B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDataGrid", "BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj", "{5F475D29-B302-4FD1-A0A6-B882FD5D2C54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDataGrid", "BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj", "{5F475D29-B302-4FD1-A0A6-B882FD5D2C54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Demo.Wasm", "wasm\BlazorApps.Demo.Wasm\BlazorApps.Demo.Wasm.csproj", "{9655AA1C-F3D8-48E3-99C5-B41195550933}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.BlazorMusicKeyboard", "BlazorApps.BlazorMusicKeyboard\BlazorApps.BlazorMusicKeyboard.csproj", "{1A7FF367-792F-4579-B766-6A63922E7658}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9655AA1C-F3D8-48E3-99C5-B41195550933}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9655AA1C-F3D8-48E3-99C5-B41195550933}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9655AA1C-F3D8-48E3-99C5-B41195550933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A7FF367-792F-4579-B766-6A63922E7658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A7FF367-792F-4579-B766-6A63922E7658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A7FF367-792F-4579-B766-6A63922E7658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A7FF367-792F-4579-B766-6A63922E7658}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

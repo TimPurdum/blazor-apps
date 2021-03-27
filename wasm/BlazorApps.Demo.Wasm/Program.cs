@@ -1,3 +1,5 @@
+using BlazorApps.BlazorDataGrid.Demo;
+using BlazorApps.BlazorMusicKeyboard;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,7 +14,9 @@ namespace BlazorApps.Demo.Wasm
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents
-                .Add<BlazorDataGrid.Demo.BdGridDemo>("#blazor-data-grid");
+                .Add<BdGridDemo>("#blazor-data-grid");
+            builder.RootComponents
+                .Add<MusicKeyboardDemo>("#blazor-music-keyboard");
 
             builder.Services.AddScoped(
                 sp => new HttpClient {BaseAddress = new Uri(new Uri(builder.HostEnvironment.BaseAddress).Host)});

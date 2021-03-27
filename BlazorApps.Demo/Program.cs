@@ -19,8 +19,10 @@ namespace BlazorApps.Demo
                     webBuilder.UseStartup<Startup>()
                         .UseKestrel(options =>
                         {
+                            #if !DEBUG
                             options.Listen(IPAddress.Loopback, 5200);
                             options.Listen(IPAddress.Loopback, 5201);
+                            #endif
                         });
                 });
         }

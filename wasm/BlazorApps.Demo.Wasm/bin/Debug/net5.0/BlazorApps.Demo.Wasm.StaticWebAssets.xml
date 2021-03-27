@@ -1,0 +1,7 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/CedarRiverTech.BlazorApps.BlazorDataGrid" Path="C:\git\blazor-apps\BlazorApps.BlazorDataGrid\obj\Debug\net5.0\scopedcss\projectbundle\" />
+  <ContentRoot BasePath="_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard" Path="C:\git\blazor-apps\BlazorApps.BlazorMusicKeyboard\obj\Debug\net5.0\scopedcss\projectbundle\" />
+  <ContentRoot BasePath="_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard" Path="C:\git\blazor-apps\BlazorApps.BlazorMusicKeyboard\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\git\blazor-apps\wasm\BlazorApps.Demo.Wasm\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>

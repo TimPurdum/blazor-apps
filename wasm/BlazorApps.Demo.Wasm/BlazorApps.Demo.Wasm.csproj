@@ -11,7 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj" />
+      <ProjectReference Include="..\..\BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj" />
+      <ProjectReference Include="..\..\BlazorApps.BlazorMusicKeyboard\BlazorApps.BlazorMusicKeyboard.csproj" />
     </ItemGroup>
 
     <ItemGroup>

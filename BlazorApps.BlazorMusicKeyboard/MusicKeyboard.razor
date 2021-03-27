@@ -1,0 +1,29 @@
+@using Microsoft.JSInterop
+@using BlazorApps.BlazorMusicKeyboard.Model
+@inject IJSRuntime JsRuntime 
+<div class="music-keyboard">
+    <CascadingValue Name="SoundPlayer" Value="@SoundPlayer">
+        @for (var i = 0; i < Instrument.Scale.Count; i++)
+        {
+            var pitch = Instrument.Scale[i];
+            var heightPct = 100 - ((30 / Instrument.Scale.Count) * i);
+            var widthPct = 96 / Instrument.Scale.Count;
+            var model = new KeyBarModel($"{Instrument.SoundFilePrefix}{pitch.LetterName}{pitch.Accidental.SoundFileMark}{pitch.Octave}.mp3", 
+                pitch.Label.Replace("♮", ""), pitch.Octave);
+            <KeyBarButton KeyBarModel="model" Height="@heightPct" Width="@widthPct" BarClass="xylophone" />
+        }
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter]
+    public Instrument Instrument { get; set; }
+
+    private SoundPlayer SoundPlayer { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SoundPlayer = new SoundPlayer(JsRuntime);
+    }
+}
