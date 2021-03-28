@@ -9,7 +9,7 @@ namespace BlazorApps.BlazorMusicKeyboard
         public SoundPlayer(IJSRuntime jsRuntime)
         {
             _moduleTask = new Lazy<Task<IJSObjectReference>>(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "./_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/musicKeyboardJsInterop.js").AsTask());
+                "import", "/_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/musicKeyboardJsInterop.js").AsTask());
         }
 
         public async ValueTask DisposeAsync()

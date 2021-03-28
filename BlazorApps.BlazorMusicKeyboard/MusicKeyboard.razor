@@ -7,7 +7,7 @@
         {
             var pitch = Instrument.Scale[i];
             var heightPct = 100 - ((30 / Instrument.Scale.Count) * i);
-            var widthPct = 96 / Instrument.Scale.Count;
+            var widthPct = 86.0 / Instrument.Scale.Count;
             var model = new KeyBarModel($"{Instrument.SoundFilePrefix}{pitch.LetterName}{pitch.Accidental.SoundFileMark}{pitch.Octave}.mp3", 
                 pitch.Label.Replace("♮", ""), pitch.Octave);
             <KeyBarButton KeyBarModel="model" Height="@heightPct" Width="@widthPct" BarClass="xylophone" />
@@ -16,10 +16,11 @@
 </div>
 
 @code {
-    [Parameter]
-    public Instrument Instrument { get; set; }
 
-    private SoundPlayer SoundPlayer { get; set; }
+    [Parameter]
+    public Instrument Instrument { get; set; } = null!;
+
+    private SoundPlayer SoundPlayer { get; set; } = null!;
 
     protected override void OnInitialized()
     {
