@@ -42,4 +42,4 @@ steps:
   inputs:
     sshEndpoint: 'CRT-VM-1'
     runOptions: 'commands'
-    commands: 'sudo systemctl restart blazor-apps.service'
+    commands: 'sudo systemctl restart blazor-apps.service;sudo systemctl restart apache2'

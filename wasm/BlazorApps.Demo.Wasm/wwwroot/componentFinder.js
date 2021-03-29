@@ -3,5 +3,5 @@ export function getComponentName() {
 }
 
 export function getBlazorComponents() {
-    return Array.from(document.querySelectorAll('BlazorComponent')).map(a => a.id);
+    return Array.from(document.querySelectorAll('.blazor-component')).map(a => a.id);
 }

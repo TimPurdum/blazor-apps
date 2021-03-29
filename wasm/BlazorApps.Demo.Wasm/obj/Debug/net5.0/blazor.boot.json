@@ -197,13 +197,13 @@
       "System.Private.CoreLib.dll": "sha256-AQbVm+Z+NByScjRZWDWQnNUk5PBVgwCSWPLQN4YxxZs=",
       "BlazorApps.BlazorDataGrid.dll": "sha256-pvZYUTP5TrmffGzG8w4aWDi6lKZ3LBiibYsqm4rywV8=",
       "BlazorApps.BlazorMusicKeyboard.dll": "sha256-+mawOo61GGJvzyqBF2FwJpRlRjk6gIKnU2lywVaaL9o=",
-      "BlazorApps.Demo.Wasm.dll": "sha256-g3kmVGCFpVC\/Isp6XE8N9Pw9X2K\/UJOR0P+oBHeVcx8="
+      "BlazorApps.Demo.Wasm.dll": "sha256-tQqD2jKrENpdLP8e7LNsu0pSwFWbakhE4yD+Crh8OaE="
     },
     "lazyAssembly": null,
     "pdb": {
       "BlazorApps.BlazorDataGrid.pdb": "sha256-8VSIxk4brEkbUpH\/yaWw4SfEa9Rtf1cWLsjtm\/VX8d0=",
       "BlazorApps.BlazorMusicKeyboard.pdb": "sha256-RVEJiBK42Nlizpacq4eue2bwQIp7aidN8SpVZrCNKV0=",
-      "BlazorApps.Demo.Wasm.pdb": "sha256-AR72AaMeu+aQyr1M5JXirusfjmYFBXtCnp6NBV9YMkY="
+      "BlazorApps.Demo.Wasm.pdb": "sha256-34wm4k7OXTHfJIDfwLzBA\/WoQFTAciS\/SZHT0lVBSvk="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-rFG55cwkAnfHzxmxwBL2tTwfj8X8cjcSEAlco4bc1eo=",
