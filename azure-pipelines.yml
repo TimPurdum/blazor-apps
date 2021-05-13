@@ -30,6 +30,14 @@ steps:
     contents: '**'
     targetFolder: '/var/www'
 
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'CRT-VM-1'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)/BlazorApps.BlazorMusicKeyboard.PWA/wwwroot'
+    contents: '**'
+    targetFolder: '/var/www/Keyboard.Unison.School'
+
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'CRT-VM-1'
