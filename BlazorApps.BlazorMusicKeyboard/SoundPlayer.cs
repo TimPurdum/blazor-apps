@@ -1,15 +1,15 @@
 using Microsoft.JSInterop;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace BlazorApps.BlazorMusicKeyboard
 {
     public class SoundPlayer : IAsyncDisposable
     {
-        public SoundPlayer(IJSRuntime jsRuntime)
+        public SoundPlayer(Lazy<Task<IJSObjectReference>> moduleTask)
         {
-            _moduleTask = new Lazy<Task<IJSObjectReference>>(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "/_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/musicKeyboardJsInterop.js").AsTask());
+            _moduleTask = moduleTask;
         }
 
         public async ValueTask DisposeAsync()
@@ -23,8 +23,17 @@ namespace BlazorApps.BlazorMusicKeyboard
 
         public async Task Play(string barId)
         {
+            Debug.WriteLine($"Playing Audio {barId}");
             var module = await _moduleTask.Value;
             await module.InvokeVoidAsync("playAudio", barId);
+            Debug.WriteLine($"Audio Completed {barId}");
+        }
+
+
+        public async Task Stop(string barId)
+        {
+            var module = await _moduleTask.Value;
+            await module.InvokeVoidAsync("stopAudio", barId);
         }
 
         private readonly Lazy<Task<IJSObjectReference>> _moduleTask;

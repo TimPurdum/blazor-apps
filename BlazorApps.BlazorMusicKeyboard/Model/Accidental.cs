@@ -4,11 +4,11 @@ namespace BlazorApps.BlazorMusicKeyboard.Model
 {
     public class Accidental
     {
-        public string Name { get; set; }
-        public int Value { get; set; }
-        public char Symbol { get; set; }
+        public string Name { get; init; } = string.Empty;
+        public int Value { get; init; }
+        public char Symbol { get; init; } = ' ';
         
-        public string SoundFileMark { get; set; } = String.Empty;
+        public string SoundFileMark { get; init; } = string.Empty;
     }
     
     public static class Accidentals

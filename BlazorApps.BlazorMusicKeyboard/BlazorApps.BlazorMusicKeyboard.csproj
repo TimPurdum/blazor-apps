@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
         <LangVersion>default</LangVersion>
         <Nullable>enable</Nullable>
         <PackageId>CedarRiverTech.BlazorApps.BlazorMusicKeyboard</PackageId>
@@ -19,12 +18,13 @@
         <PackageLicenseUrl>https://github.com/TimPurdum/blazor-apps/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/TimPurdum/blazor-apps</RepositoryUrl>
         <PackageTags>Music, Blazor</PackageTags>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <SupportedPlatform Include="browser" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.5" />
     </ItemGroup>
 </Project>

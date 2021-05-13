@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Demo", "BlazorApps.Demo\BlazorApps.Demo.csproj", "{E8DA4A4E-D680-4D18-A319-19ABB9C9975B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.Demo", "BlazorApps.Demo\BlazorApps.Demo.csproj", "{E8DA4A4E-D680-4D18-A319-19ABB9C9975B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDataGrid", "BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj", "{5F475D29-B302-4FD1-A0A6-B882FD5D2C54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorDataGrid", "BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj", "{5F475D29-B302-4FD1-A0A6-B882FD5D2C54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Demo.Wasm", "wasm\BlazorApps.Demo.Wasm\BlazorApps.Demo.Wasm.csproj", "{9655AA1C-F3D8-48E3-99C5-B41195550933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.Demo.Wasm", "wasm\BlazorApps.Demo.Wasm\BlazorApps.Demo.Wasm.csproj", "{9655AA1C-F3D8-48E3-99C5-B41195550933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.BlazorMusicKeyboard", "BlazorApps.BlazorMusicKeyboard\BlazorApps.BlazorMusicKeyboard.csproj", "{1A7FF367-792F-4579-B766-6A63922E7658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorMusicKeyboard", "BlazorApps.BlazorMusicKeyboard\BlazorApps.BlazorMusicKeyboard.csproj", "{1A7FF367-792F-4579-B766-6A63922E7658}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorScrumPoker", "BlazorApps.BlazorScrumPoker\BlazorApps.BlazorScrumPoker.csproj", "{24ADE332-F4C0-4C6E-B002-1E4411C56D65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorMusicKeyboard.PWA", "BlazorApps.BlazorMusicKeyboard.PWA\BlazorApps.BlazorMusicKeyboard.PWA.csproj", "{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{1A7FF367-792F-4579-B766-6A63922E7658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A7FF367-792F-4579-B766-6A63922E7658}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A7FF367-792F-4579-B766-6A63922E7658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24ADE332-F4C0-4C6E-B002-1E4411C56D65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24ADE332-F4C0-4C6E-B002-1E4411C56D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24ADE332-F4C0-4C6E-B002-1E4411C56D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24ADE332-F4C0-4C6E-B002-1E4411C56D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

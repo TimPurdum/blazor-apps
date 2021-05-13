@@ -1,21 +1,11 @@
 @using BlazorApps.BlazorMusicKeyboard.Model
+@using System.Diagnostics
+@using System.Drawing
+@using System.Text.Encodings.Web
 
-<audio id="@KeyBarModel.BarId" src="_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/Sounds/@KeyBarModel.SoundFile"></audio>
-<button @onmousedown="Click" class="@BarClass" style="height: @(Height)%; width: @(Width)%;">@KeyBarModel.Label</button>
-@code {
-    [Parameter]
-    public KeyBarModel KeyBarModel { get; set; }
-    [Parameter]
-    public int Height { get; set; }
-    [Parameter]
-    public double Width { get; set; }
-    [Parameter]
-    public string BarClass { get; set; }
-    [CascadingParameter(Name = "SoundPlayer")]
-    public SoundPlayer SoundPlayer { get; set; }
-
-    private async Task Click()
-    {
-        await SoundPlayer.Play(KeyBarModel.BarId);
-    }
-}
+<audio id="@KeyBarModel.BarId-@KeyBarModel.SoundFile" src="_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/Sounds/@KeyBarModel.SoundFile"></audio>
+<button id="@KeyBarModel.BarId" @ref="BarButton" @onmousedown="MouseDown" @onmouseup="MouseUp" @onmouseout="MouseOut" 
+        @onmouseover="MouseOver" @ontouchstart="TouchStart" @ontouchend="TouchEnd" @ontouchmove="TouchMove"
+         class="keybar @BarClass" style="height: @(Height)%; width: @(Width)px; @(Left > 0 ? $"left:{Left}px;" : "")">
+    <div style="text-align: center; width: 100%; pointer-events: none;">@((MarkupString) KeyBarModel.Label)</div>
+</button>

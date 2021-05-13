@@ -2,10 +2,10 @@ namespace BlazorApps.BlazorMusicKeyboard.Model
 {
     public class Pitch
     {
-        public char LetterName { get; set; }
-        public Accidental Accidental { get; set; } = Accidentals.Natural;
-        
-        public int Octave { get; set; }
+        public char LetterName { get; init; } = ' ';
+        public Accidental Accidental { get; init; } = Accidentals.Natural;
+
+        public int Octave { get; init; } = 1;
 
         public string Label => $"{LetterName}{Accidental.Symbol}";
     }
@@ -13,6 +13,8 @@ namespace BlazorApps.BlazorMusicKeyboard.Model
 
     public static class Pitches
     {
+        public static readonly Pitch Dummy = new Pitch();
+        
         public static readonly Pitch A1 = new()
         {
             Accidental = Accidentals.Natural,

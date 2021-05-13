@@ -1,0 +1,59 @@
+﻿.scrum-card {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 300px;
+    width: 200px;
+    z-index: 0;
+    background-image: url('background.png');
+}
+
+
+.focus {
+    position: relative;
+    z-index: 100;
+    background-color: yellow;
+    background-image: none;
+}
+
+
+.top-num {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    font-size: 40px;
+}
+
+.top-name {
+    position: absolute;
+    top: 24px;
+    font-size: 16px;
+    right: 20px;
+}
+
+.center-num {
+    position: absolute;
+    width: 100%;
+    line-height: 300px;
+    font-size: 80px;
+    text-align: center;
+}
+
+.bottom-num {
+    position: absolute;
+    bottom: 10px;
+    right: 16px;
+    font-size: 40px;
+    transform: rotate(180deg);
+}
+
+
+.bottom-name {
+    position: absolute;
+    bottom: 24px;
+    font-size: 16px;
+    left: 20px;
+    transform: rotate(180deg);
+}

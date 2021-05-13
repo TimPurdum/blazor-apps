@@ -1,0 +1,126 @@
+@using Microsoft.JSInterop
+@inject IJSRuntime JsRuntime
+<div id="keyboard-container">
+    <div style="width: 100%; display: inline-flex; justify-content: flex-end; position: absolute">
+        <button id="control-toggle" @onclick="ToggleControls"><i class="oi oi-chevron-bottom"/></button>
+    </div>
+    <div class="@(_isCollapsed ? "collapse" : "controls-popup")">
+        <div class="@(_isCollapsed ? "collapse" : "keyboard-controls")">
+            <div class="controls-row">
+                <label>Instrument: </label>
+                <select @bind="_instrumentName" class="form-control">
+                    @foreach (var instr in Instruments.All)
+                    {
+                        <option value="@instr.Name">@instr.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="controls-row">
+                <label>Scale: </label>
+                <select @bind="_scaleName" class="form-control">
+                    @foreach (var scale in CurrentInstrument.AvailableScales)
+                    {
+                        <option value="@scale.Name">@scale.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="controls-row">
+                <label>Recording Track: </label><input type="number" style="width: 60px;" min="1" max="@_soundRecorder.RecordedTracks.Count + 1" @bind="CurrentTrack" />
+            </div>
+            <div class="controls-row">
+                <button @onclick="Record" style="background-color: @(_soundRecorder.Recording ? "red" : "lightgray")"><i class="oi oi-media-record" /> Record</button>
+                <button @onclick="Stop"><i class="oi oi-media-stop" /> Stop</button>
+                <button @onclick="Playback" style="background-color: @(_soundRecorder.Playing ? "green" : "lightgray")"><i class="oi oi-media-play" /> Play</button>
+                <button @onclick="Save"><i class="oi oi-data-transfer-download" /> Save</button>
+            </div>
+            <div class="controls-row">
+                @foreach (var track in _soundRecorder.RecordedTracks)
+                {
+                    <button title="Delete Track!" @onclick="() => DeleteTrack(track)">Track @(track + 1) <i style="background-color: red; padding: 2px;" class="oi oi-trash" /></button>
+                }
+            </div>
+        </div>
+    </div>
+    <MusicKeyboard Instrument="@CurrentInstrument"></MusicKeyboard>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _moduleTask = new Lazy<Task<IJSObjectReference>>(async () => await JsRuntime.InvokeAsync<IJSObjectReference>(
+            "import", "/_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/musicKeyboardJsInterop.js").AsTask());
+        _soundRecorder = new SoundRecorder(_moduleTask);
+    }
+
+    private string _instrumentName = Instruments.AltoXylophone.Name;
+    private string _scaleName = Scales.C2Diatonic.Name;
+    private static Lazy<Task<IJSObjectReference>> _moduleTask;
+    private SoundRecorder _soundRecorder;
+    private int _currentTrack = 1;
+
+    private Instrument CurrentInstrument
+    {
+        get
+        {
+            var instr = Instruments.Find(_instrumentName);
+            instr.CurrentScale = instr.AvailableScales.FirstOrDefault(s => s.Name == _scaleName) ?? instr.CurrentScale;
+            return instr;
+        }
+    }
+
+    private async Task Record()
+    {
+        await _soundRecorder.Record();
+    }
+
+    private async Task Playback()
+    {
+        await _soundRecorder.Playback(true);
+    }
+
+    private async Task Stop()
+    {
+        if (_soundRecorder.Recording)
+        {
+            await _soundRecorder.StopRecording();
+            CurrentTrack = _soundRecorder.RecordedTracks.Count + 1;
+        }
+        else
+        {
+            await _soundRecorder.StopPlayback();
+        }
+    }
+
+    private int CurrentTrack
+    {
+        get => _currentTrack;
+        set
+        {
+            _currentTrack = value;
+            _soundRecorder.SetCurrentTrack(_currentTrack - 1);
+        }
+    }
+
+    private async Task Save()
+    {
+        await _soundRecorder.Save();
+    }
+
+    private async Task DeleteTrack(int track)
+    {
+        await _soundRecorder.DeleteTrack(track);
+        if (CurrentTrack == track)
+        {
+            CurrentTrack = 1;
+        }
+    }
+
+    private void ToggleControls()
+    {
+        _isCollapsed = !_isCollapsed;
+    }
+
+    private bool _isCollapsed = true;
+
+}

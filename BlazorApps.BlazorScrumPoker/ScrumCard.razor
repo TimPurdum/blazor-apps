@@ -1,0 +1,34 @@
+﻿<div class="scrum-card @_focus" @onmouseover="MouseOver" @onmouseout="MouseOut">
+    <div class="top-num">@Value</div>
+    <div class="top-name">Story Points</div>
+    <div class="center-num">@Value</div>
+    <div class="bottom-num">@Value</div>
+    <div class="bottom-name">Story Points</div>
+</div>
+
+@code
+{
+    [Parameter]
+    public double Value { get; set; } = 1;
+    
+    [Parameter]
+    public EventCallback<double> HasFocus { get; set; }
+    
+    [Parameter]
+    public EventCallback<double> LostFocus { get; set; }
+
+    private async Task MouseOver()
+    {
+        _focus = "focus";
+        //await HasFocus.InvokeAsync(Value);
+    }
+
+    private async Task MouseOut()
+    {
+        _focus = string.Empty;
+        //await LostFocus.InvokeAsync(Value);
+    }
+
+
+    private string _focus = string.Empty;
+}

@@ -1,30 +1,45 @@
-@using Microsoft.JSInterop
-@using BlazorApps.BlazorMusicKeyboard.Model
-@inject IJSRuntime JsRuntime 
-<div class="music-keyboard">
+<div @ref="_keyboard" class="music-keyboard">
     <CascadingValue Name="SoundPlayer" Value="@SoundPlayer">
-        @for (var i = 0; i < Instrument.Scale.Count; i++)
-        {
-            var pitch = Instrument.Scale[i];
-            var heightPct = 100 - ((30 / Instrument.Scale.Count) * i);
-            var widthPct = 86.0 / Instrument.Scale.Count;
-            var model = new KeyBarModel($"{Instrument.SoundFilePrefix}{pitch.LetterName}{pitch.Accidental.SoundFileMark}{pitch.Octave}.mp3", 
-                pitch.Label.Replace("♮", ""), pitch.Octave);
-            <KeyBarButton KeyBarModel="model" Height="@heightPct" Width="@widthPct" BarClass="xylophone" />
-        }
+        <CascadingValue Name="ModuleTask" Value="@_moduleTask">
+            @{
+                var barClass = Instrument.InstrumentType.ToString().ToLower();
+                for (var i = 0; i < Instrument.Naturals.Count; i++)
+                {
+                    var pitch = Instrument.Naturals[i];
+                    if (pitch.LetterName == ' ')
+                    {
+                        // dummy placeholder
+                        barClass = "dummy";
+                    }
+                    else
+                    {
+                        barClass = Instrument.InstrumentType.ToString().ToLower();
+                    }
+                    var heightPct = Instrument.InstrumentType == InstrumentType.Piano
+                        ? 100
+                        : 100 - ((30 / Instrument.Naturals.Count) * i);
+                    var model = BuildBarModel(pitch);
+                    var id = model.BarId;
+                    <KeyBarButton KeyBarModel="@model" @bind-MouseIsDown="@MouseIsDown"
+                                  @bind-TouchPoint="@TouchPoint" TouchOnBar="@OnTouchOnBar"
+                                  @ref="_keyBars[id]" IsAccidental="false"
+                                  Height="@heightPct" Width="@_barWidth" BarClass="@barClass"/>
+                }
+                for (var j = 0; j < Instrument.Accidentals.Count; j++)
+                {
+                    var pitch = Instrument.Accidentals[j];
+                    var heightPct = Instrument.InstrumentType == InstrumentType.Piano
+                        ? 50
+                        : 50 - ((30 / Instrument.Accidentals.Count) * j);
+                    var model = BuildBarModel(pitch);
+                    var id = model.BarId;
+                    <KeyBarButton KeyBarModel="@model" @bind-MouseIsDown="@MouseIsDown"
+                                  @bind-TouchPoint="@TouchPoint" TouchOnBar="@OnTouchOnBar"
+                                  Left="@CalculateAccidentalLeftOffset(pitch)"
+                                  @ref="_keyBars[id]" IsAccidental="true"
+                                  Height="@heightPct" Width="@_accidentalBarWidth" BarClass="@($"{barClass} accidental")"/>
+                }
+            }
+        </CascadingValue>
     </CascadingValue>
 </div>
-
-@code {
-
-    [Parameter]
-    public Instrument Instrument { get; set; } = null!;
-
-    private SoundPlayer SoundPlayer { get; set; } = null!;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        SoundPlayer = new SoundPlayer(JsRuntime);
-    }
-}

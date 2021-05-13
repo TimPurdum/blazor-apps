@@ -14,7 +14,7 @@
         "outputPath": "C:\\git\\blazor-apps\\BlazorApps.BlazorDataGrid\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,7 +79,7 @@
         "outputPath": "C:\\git\\blazor-apps\\BlazorApps.BlazorMusicKeyboard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -112,7 +112,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Components.Web": {
               "target": "Package",
-              "version": "[5.0.3, )"
+              "version": "[5.0.5, )"
             }
           },
           "imports": [
@@ -144,7 +144,7 @@
         "outputPath": "C:\\git\\blazor-apps\\wasm\\BlazorApps.Demo.Wasm\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\tim\\AppData\\Roaming\\NuGet\\NuGet.Config",

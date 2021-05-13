@@ -1,5 +1,41 @@
+.keybar {
+    font-weight: bold;
+    touch-action: none;
+    display: inline-flex;
+    padding: 4px;
+    float: left;
+}
+
 .xylophone {
     background-color: saddlebrown;
     color: white;
-    font-weight: bolder;
+    align-items: center;
+}
+
+.piano {
+    background-color: white;
+    color: black;
+    align-items: flex-end;
+}
+
+.piano.accidental {
+    background-color: black;
+    color: white;
+}
+
+.xylophone.accidental {
+    align-items: flex-end;
+}
+
+.accidental {
+    position: absolute;
+    top: 4px;
+}
+
+.dummy {
+    visibility: hidden;
+}
+
+.label-bottom {
+    align-items: flex-end;
 }

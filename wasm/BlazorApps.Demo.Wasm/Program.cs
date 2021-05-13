@@ -27,7 +27,7 @@ namespace BlazorApps.Demo.Wasm
                         builder.RootComponents.Add<BdGridDemo>("#blazor-data-grid");
                         break;
                     case "blazor-music-keyboard":
-                        builder.RootComponents.Add<MusicKeyboardDemo>("#blazor-music-keyboard");
+                        builder.RootComponents.Add<KeyboardController>("#blazor-music-keyboard");
                         break;       
                 }
             }

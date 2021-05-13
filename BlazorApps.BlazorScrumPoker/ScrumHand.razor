@@ -1,0 +1,49 @@
+<div style="padding: 60px">
+    @for (var i = 0; i < Values.Length; i++)
+    {
+        var value = Values[i];
+        <div style="@($"display: inline-block; transform: rotate({-40 + (i * 10)}deg); margin-right: -120px;")">
+            <ScrumCard Value="value" HasFocus="@CardHasFocus" LostFocus="@CardLostFocus" />
+        </div>
+    }
+</div>
+
+
+@code {
+
+    [Parameter]
+    public double[] Values { get; set; } = {
+        1, 2, 3, 5, 8, 13, 20, 40, 100
+    };
+
+
+    private void CardHasFocus(double value)
+    {
+        if (value > _currentFocusedValue)
+        {
+            _currentFocusedValue = value;
+            StateHasChanged();
+        }
+    }
+
+
+    private void CardLostFocus(double value)
+    {
+        if (Math.Abs(value - _currentFocusedValue) < 0.1)
+        {
+            var nextCardIndex = Array.IndexOf(Values, value) - 1;
+            if (nextCardIndex <= 0)
+            {
+                _currentFocusedValue = -1;
+            }
+            else
+            {
+                _currentFocusedValue = Values[nextCardIndex];
+            }
+            StateHasChanged();
+        }
+    }
+
+
+    private double _currentFocusedValue;
+}
