@@ -98,8 +98,7 @@ namespace BlazorApps.BlazorDataGrid.Components
         {
             await InvokeAsync(StateHasChanged);
         }
-
-
+        
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);

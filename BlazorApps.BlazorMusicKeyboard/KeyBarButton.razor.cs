@@ -57,9 +57,22 @@ namespace BlazorApps.BlazorMusicKeyboard
 
         public async Task MouseDown()
         {
-            MouseIsDown = true;
-            await SoundPlayer.Play($"{KeyBarModel.BarId}-{KeyBarModel.SoundFile}");
+            if (!MouseIsDown)
+            {
+                await PlaySound();
+                MouseIsDown = true;
+            }
             await MouseIsDownChanged.InvokeAsync(true);
+        }
+
+
+        public string BarJavascriptId => $"{KeyBarModel.BarId}-{KeyBarModel.SoundFile}";
+
+        public string IsPiano => KeyBarModel.InstrumentType == InstrumentType.Piano ? "true" : "false";
+
+        private async Task PlaySound()
+        {
+            await SoundPlayer.Play($"{KeyBarModel.BarId}-{KeyBarModel.SoundFile}");
         }
 
         private async Task MouseUp()
@@ -76,7 +89,7 @@ namespace BlazorApps.BlazorMusicKeyboard
         {
             if (MouseIsDown)
             {              
-                await MouseDown();
+                await PlaySound();
             }
         }
 
@@ -91,6 +104,7 @@ namespace BlazorApps.BlazorMusicKeyboard
         private async Task TouchStart()
         {
             await TouchOnBar.InvokeAsync(this);
+            MouseIsDown = true;
             await MouseDown();
         }
         

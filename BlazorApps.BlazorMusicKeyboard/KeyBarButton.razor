@@ -4,8 +4,14 @@
 @using System.Text.Encodings.Web
 
 <audio id="@KeyBarModel.BarId-@KeyBarModel.SoundFile" src="_content/CedarRiverTech.BlazorApps.BlazorMusicKeyboard/Sounds/@KeyBarModel.SoundFile"></audio>
-<button id="@KeyBarModel.BarId" @ref="BarButton" @onmousedown="MouseDown" @onmouseup="MouseUp" @onmouseout="MouseOut" 
-        @onmouseover="MouseOver" @ontouchstart="TouchStart" @ontouchend="TouchEnd" @ontouchmove="TouchMove"
-         class="keybar @BarClass" style="height: @(Height)%; width: @(Width)px; @(Left > 0 ? $"left:{Left}px;" : "")">
+<button id="@KeyBarModel.BarId" @ref="BarButton"
+        onmousedown="mouseDown('@BarJavascriptId'); event.preventDefault();"
+        onmouseup="mouseUp('@BarJavascriptId', @IsPiano); event.preventDefault();"
+        onmouseover="mouseOver('@BarJavascriptId'); event.preventDefault();"
+        onmouseout="mouseOut('@BarJavascriptId', @IsPiano); event.preventDefault();"
+        ontouchstart="touchStart('@BarJavascriptId'); event.preventDefault();"
+        ontouchend="touchEnd('@BarJavascriptId', @IsPiano); event.preventDefault();"
+        ontouchmove="touchMove(event); event.preventDefault();"
+        class="keybar @BarClass" style="height: @(Height)%; width: @(Width)px; @(Left > 0 ? $"left:{Left}px;" : "")">
     <div style="text-align: center; width: 100%; pointer-events: none;">@((MarkupString) KeyBarModel.Label)</div>
 </button>
