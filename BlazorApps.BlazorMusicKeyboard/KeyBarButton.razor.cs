@@ -49,7 +49,8 @@ namespace BlazorApps.BlazorMusicKeyboard
         {
             if (KeyBarModel.InstrumentType != InstrumentType.Piano)
             {
-                await (await ModuleTask.Value).InvokeVoidAsync("setTopOffset", KeyBarModel.BarId, Height, IsAccidental);    
+                await (await ModuleTask.Value).InvokeVoidAsync("registerBar", 
+                    KeyBarModel.BarId, BarAudioId, Height, IsAccidental, IsPiano);    
             }
             
             await base.OnAfterRenderAsync(firstRender);
@@ -66,7 +67,7 @@ namespace BlazorApps.BlazorMusicKeyboard
         }
 
 
-        public string BarJavascriptId => $"{KeyBarModel.BarId}-{KeyBarModel.SoundFile}";
+        public string BarAudioId => $"{KeyBarModel.BarId}-{KeyBarModel.SoundFile}";
 
         public string IsPiano => KeyBarModel.InstrumentType == InstrumentType.Piano ? "true" : "false";
 

@@ -1,55 +1,88 @@
-window.mouseDown = (barId) => {
-    if (addBar(barId)) {
-        playAudio(barId);
+export function registerBar(barId, audioId, heightPct, isAccidental, isPiano) {
+    let keyBar = document.getElementById(barId);
+    setTopOffset(keyBar, heightPct, isAccidental);
+    keyBar.addEventListener('mousedown', (e) => {
+        barMouseDown(audioId); 
+        e.preventDefault();
+    });
+    keyBar.addEventListener('mouseup', (e) => {
+        barMouseUp(audioId, isPiano);
+        e.preventDefault();
+    });
+    keyBar.addEventListener('mouseout', (e) => {
+        barMouseOut(audioId, isPiano);
+        e.preventDefault();
+    });
+    keyBar.addEventListener('mouseover', (e) => {
+        barMouseOver(audioId);
+        e.preventDefault();
+    });
+    keyBar.addEventListener('touchstart', (e) => {
+        barTouchStart(audioId);
+        e.preventDefault();
+    });
+    keyBar.addEventListener('touchend', (e) => {
+        barTouchEnd(audioId, isPiano);
+        e.preventDefault();
+    });
+    keyBar.addEventListener('touchmove', (e) => {
+        barTouchMove(e);
+        e.preventDefault();
+    });
+}
+
+function barMouseDown(audioId) {
+    if (addBar(audioId)) {
+        playAudio(audioId);
     }
     mouseIsDown = true;
     console.log("mouse down");
 }
 
-window.mouseUp = (barId, isPiano) => {
+function barMouseUp(audioId, isPiano) {
     if (isPiano) {
-        stopAudio(barId);
+        stopAudio(audioId);
     }
-    removeBar(barId);
+    removeBar(audioId);
     mouseIsDown = false;
     console.log("mouse up");
 }
 
-window.mouseOver = (barId) => {
-    if (mouseIsDown && addBar(barId)) {
-        playAudio(barId);
+function barMouseOver(audioId) {
+    if (mouseIsDown && addBar(audioId)) {
+        playAudio(audioId);
     }
     console.log("mouse over");
 }
 
-window.mouseOut = (barId, isPiano) => {
+function barMouseOut(audioId, isPiano) {
     if (isPiano) {
-        stopAudio(barId);
+        stopAudio(audioId);
     }
-    removeBar(barId);
+    removeBar(audioId);
     console.log("mouse out");
 }
  
-window.touchStart = (barId) => {
-    if (addBar(barId)) {
-        playAudio(barId);
+function barTouchStart(audioId) {
+    if (addBar(audioId)) {
+        playAudio(audioId);
     }
     mouseIsDown = true;
     console.log("touch start");
 }
 
 
-window.touchEnd = (barId, isPiano) => {
+function barTouchEnd(audioId, isPiano) {
     if (isPiano) {
-        stopAudio(barId);
+        stopAudio(audioId);
     }
-    removeBar(barId);
+    removeBar(audioId);
     mouseIsDown = false;
     console.log("touch end");
 }
 
 
-window.touchMove = (event) => {
+function barTouchMove(event) {
     let newBar = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
     if (newBar.classList.contains('keybar')) {
         var wasDown = null;
@@ -71,18 +104,18 @@ window.touchMove = (event) => {
     }
 }
 
-function addBar(barId) {
-    let index = mouseDownButtons.indexOf(barId);
+function addBar(audioId) {
+    let index = mouseDownButtons.indexOf(audioId);
     if (index < 0) {
-        mouseDownButtons.push(barId);
+        mouseDownButtons.push(audioId);
         return true;
     }
     
     return false;
 }
 
-function removeBar(barId) {
-    let index = mouseDownButtons.indexOf(barId);
+function removeBar(audioId) {
+    let index = mouseDownButtons.indexOf(audioId);
     if (index > -1) {
         mouseDownButtons.splice(index, 1);
     }
@@ -91,9 +124,9 @@ function removeBar(barId) {
 let mouseDownButtons = [];
 let mouseIsDown = false;
 
-export function playAudio(barId) {
-    const audio = document.getElementById(barId);
-    console.log('play audio ' + barId);
+export function playAudio(audioId) {
+    const audio = document.getElementById(audioId);
+    console.log('play audio ' + audioId);
     if (audio.paused) {
         audio.play();
     }else{
@@ -105,8 +138,8 @@ export function playAudio(barId) {
     }
 }
 
-export function stopAudio(barId) {
-    const audio = document.getElementById(barId);
+export function stopAudio(audioId) {
+    const audio = document.getElementById(audioId);
     lowerAudio(audio);
 }
 
@@ -118,15 +151,14 @@ export function getElementAtPoint(x, y) {
     return document.elementFromPoint(x, y).id;
 }
 
-export function setTopOffset(barId, heightPct, isAccidental) {
-    const keybar = document.getElementById(barId);
+export function setTopOffset(keyBar, heightPct, isAccidental) {
     const totalHeight = document.getElementsByClassName('music-keyboard')[0].clientHeight;
   
     let offset = (((100 - heightPct) / 2) / 100) * totalHeight;
     if (isAccidental) {
         offset = offset - (totalHeight / 3.5);
     }
-    keybar.style.marginTop = offset + 'px';
+    keyBar.style.marginTop = offset + 'px';
 }
 
 let AudioContext = window.AudioContext || window.webkitAudioContext;
