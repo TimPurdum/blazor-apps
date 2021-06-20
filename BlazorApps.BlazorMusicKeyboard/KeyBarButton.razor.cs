@@ -69,7 +69,7 @@ namespace BlazorApps.BlazorMusicKeyboard
 
         public string BarAudioId => $"{KeyBarModel.BarId}-{KeyBarModel.SoundFile}";
 
-        public string IsPiano => KeyBarModel.InstrumentType == InstrumentType.Piano ? "true" : "false";
+        public bool IsPiano => KeyBarModel.InstrumentType == InstrumentType.Piano;
 
         private async Task PlaySound()
         {
