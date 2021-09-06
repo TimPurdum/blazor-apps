@@ -1,0 +1,28 @@
+﻿<ScrumHand UserName="@UserName" OnCardClickedCallback="CardClicked" />
+
+<div style="position: relative; width: 100%; top: 420px; display: flex; right: 100px">
+	@{
+		var offset = 0;
+	}
+	@foreach (var kvp in _selectedValues)
+	{
+		<div class="labelled-card" style="top: @(offset)px;">
+			<ScrumCard Value="@kvp.Value" />
+			<label class="card-label">@kvp.Key</label>
+		</div>
+		offset += 10;
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string UserName { get; set; }
+	private Dictionary<string, double> _selectedValues { get; set; } = new Dictionary<string, double>
+	{ {"Test", 4}, {"test2", 10}, { "Josh", 3}, {"Kevin", 6 }, { "Sally", 13 },
+	{"Jackson Pollock", 4}, {"Fred", 10}, { "Silly", 3}, {"Joe", 6 }, { "Bob", 13 } };
+
+	private void CardClicked(Tuple<string, double> values)
+	{
+		_selectedValues[values.Item1] = values.Item2;
+	}
+}
