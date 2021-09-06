@@ -1,8 +1,6 @@
-using System.Text.Json.Serialization;
-
-namespace BlazorApps.BlazorCharts.Model
+namespace BlazorApps.BlazorCharts.Model.Enums
 {
-    [JsonEnumConverterAttribute]
+    [JsonEnumConverter]
     public enum BorderSkipped
     {
         False,

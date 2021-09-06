@@ -1,5 +1,6 @@
-namespace BlazorApps.BlazorCharts.Model
+namespace BlazorApps.BlazorCharts.Model.Enums
 {
+    [JsonEnumConverter]
     public enum CanvasLineJoin
     {
         Bevel,

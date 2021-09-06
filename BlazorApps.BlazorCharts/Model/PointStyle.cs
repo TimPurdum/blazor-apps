@@ -1,4 +1,6 @@
-namespace BlazorApps.BlazorCharts
+using BlazorApps.BlazorCharts.Model.Enums;
+
+namespace BlazorApps.BlazorCharts.Model
 {
     public class PointStyle
     {

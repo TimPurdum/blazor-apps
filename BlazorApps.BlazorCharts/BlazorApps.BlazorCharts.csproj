@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <LangVersion>default</LangVersion>
+        <Nullable>enable</Nullable>
+        <PackageId>CedarRiverTech.BlazorApps.BlazorCharts</PackageId>
+        <Authors>Tim Purdum</Authors>
+        <Company>Cedar River Tech</Company>
+        <Description>
+            The Blazor Charts wrapper of Chart.js
+        </Description>
+        <AssemblyVersion>1</AssemblyVersion>
+        <FileVersion>1</FileVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Blazor Charts</Title>
+        <Copyright>Copyright © 2021 by Cedar River Tech</Copyright>
+        <PackageProjectUrl>https://demo.tocode.software/charts</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/TimPurdum/blazor-apps/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/TimPurdum/blazor-apps</RepositoryUrl>
+        <PackageTags>Visualization, Data, Charts, Blazor</PackageTags>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-preview.6.21355.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Model\Data" />
+    </ItemGroup>
+
+</Project>

@@ -1,6 +1,8 @@
-namespace BlazorApps.BlazorCharts
+using BlazorApps.BlazorCharts.Model.Enums;
+
+namespace BlazorApps.BlazorCharts.Model.Options
 {
-    public class ArcOptions : CommonElementOptions
+    public interface IArcOptions
     {
         public ArcStrokeAlignment BorderAlign { get; set; }
         public ArcBorderRadius BorderRadius { get; set; }

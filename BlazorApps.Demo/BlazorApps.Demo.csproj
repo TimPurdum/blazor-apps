@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
     <AssemblyVersion>1.0.1</AssemblyVersion>
@@ -12,5 +12,7 @@
     <ProjectReference Include="..\BlazorApps.BlazorMusicKeyboard\BlazorApps.BlazorMusicKeyboard.csproj" />
     <ProjectReference Include="..\BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj" />
     <ProjectReference Include="..\BlazorApps.BlazorScrumPoker\BlazorApps.BlazorScrumPoker.csproj" />
+    <ProjectReference Include="..\BlazorApps.BlazorCharts\BlazorApps.BlazorCharts.csproj" />
+    <ProjectReference Include="..\BlazorControls\BlazorControls.csproj" />
   </ItemGroup>
 </Project>

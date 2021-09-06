@@ -1,5 +1,8 @@
-namespace BlazorApps.BlazorCharts
+using System.Text.Json.Serialization;
+
+namespace BlazorApps.BlazorCharts.Model.ChartTypes
 {
+    [JsonConverter(typeof(ChartTypeConverter))]
     public enum ChartTypeEnum
     {
         Line,
@@ -9,7 +12,6 @@ namespace BlazorApps.BlazorCharts
         Pie,
         PolarArea,
         Bubble,
-        Scatter,
-        Area
+        Scatter
     }
 }

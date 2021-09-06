@@ -1,6 +1,6 @@
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model
 {
-    public class BubbleDataPoint: IDataPoint
+    public class BubbleDataPoint: DataPoint
     {
         public double X { get; set; }
         public double Y { get; set; }

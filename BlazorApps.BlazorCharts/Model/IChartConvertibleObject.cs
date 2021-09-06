@@ -1,4 +1,4 @@
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model
 {
     public interface IChartConvertibleObject
     {

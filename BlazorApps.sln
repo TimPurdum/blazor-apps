@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31606.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.Demo", "BlazorApps.Demo\BlazorApps.Demo.csproj", "{E8DA4A4E-D680-4D18-A319-19ABB9C9975B}"
 EndProject
@@ -14,6 +14,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorScrumPoker", "BlazorApps.BlazorScrumPoker\BlazorApps.BlazorScrumPoker.csproj", "{24ADE332-F4C0-4C6E-B002-1E4411C56D65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorMusicKeyboard.PWA", "BlazorApps.BlazorMusicKeyboard.PWA\BlazorApps.BlazorMusicKeyboard.PWA.csproj", "{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorControls", "BlazorControls\BlazorControls.csproj", "{5D080F1E-6C27-42AE-A184-CACF2060D1C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorCharts", "BlazorApps.BlazorCharts\BlazorApps.BlazorCharts.csproj", "{FF41DFE2-7878-4868-8FAA-DF630E399161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Shared", "BlazorApps.Shared\BlazorApps.Shared.csproj", "{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Test", "BlazorApps.Test\BlazorApps.Test.csproj", "{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,22 @@ Global
 		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C2B217-5B1E-4520-A1E5-571AF4FED8F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D080F1E-6C27-42AE-A184-CACF2060D1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D080F1E-6C27-42AE-A184-CACF2060D1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D080F1E-6C27-42AE-A184-CACF2060D1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D080F1E-6C27-42AE-A184-CACF2060D1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF41DFE2-7878-4868-8FAA-DF630E399161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF41DFE2-7878-4868-8FAA-DF630E399161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF41DFE2-7878-4868-8FAA-DF630E399161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF41DFE2-7878-4868-8FAA-DF630E399161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

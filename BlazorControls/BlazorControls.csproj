@@ -4,4 +4,10 @@
         <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Blazorise.Bootstrap" Version="0.9.4.2" />
+      <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.4.2" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0-preview.6.21352.12" />
+    </ItemGroup>
+
 </Project>

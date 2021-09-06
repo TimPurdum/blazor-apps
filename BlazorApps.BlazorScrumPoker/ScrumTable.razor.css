@@ -1,7 +1,23 @@
-﻿.labelled-card {
+﻿.scrum-table {
+    position: relative;
+    width: 100%;
+}
+
+.results {
+    position: absolute;
+    width: 150%;
+    top: 300px;
+    display: flex;
+    left: -38%;
+    flex-wrap: wrap;
+    transform: scale(0.5);
+}
+
+.labelled-card {
     position: relative;
     height: 350px;
     flex: auto;
+    width: 300px;
 }
 
 .card-label {
@@ -9,4 +25,12 @@
     bottom: 0;
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.card-toggle {
+    position: absolute;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }

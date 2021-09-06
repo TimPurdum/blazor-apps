@@ -1,6 +1,101 @@
 @page "/Charts"
+@using BlazorApps.BlazorCharts.Model
+@using BlazorApps.BlazorCharts.Model.ChartTypes
+@using BlazorApps.BlazorCharts.Model.Enums
+@using BlazorApps.BlazorCharts.Model.Options
 <h3>Charts</h3>
 
-@code {
+<BlazorChart Configuration="@_config" />
+
+<EditForm Model="_config">
+    <label>Chart Type: </label>
+    <InputSelect @bind-Value="_config.ChartType">
+        @foreach (ChartTypeEnum chartTypeVal in Enum.GetValues(typeof(ChartTypeEnum)))
+        {
+            <option value="@chartTypeVal">@chartTypeVal.ToString()</option>
+        }
+    </InputSelect>
+    <div class="form-group">
+        <h3>Data Set 1</h3>
+        @{
+            var dataSet = _config.Data.DataSets[0];
+        }
+        <label>Background Color</label>
+        <InputSelect @bind-Value="dataSet.BackgroundColor">
+            @foreach (KnownColor color in (Enum.GetValues(typeof(KnownColor)) as IEnumerable<KnownColor>)
+                .OrderBy(v => v.ToString()))
+            {
+                if (color.ToString() == dataSet.BackgroundColor.ToString())
+                {
+                    <option selected value="@color">@color.ToString()</option>
+                }
+                else
+                {
+                    <option value="@color">@color.ToString()</option>
+                }
+            }
+        </InputSelect>
+        <label>Border Color</label>
+        <InputSelect @bind-Value="dataSet.BorderColor">
+            @foreach (KnownColor color in (Enum.GetValues(typeof(KnownColor)) as IEnumerable<KnownColor>)
+                .OrderBy(v => v.ToString()))
+            {
+                if (color.ToString() == dataSet.BorderColor.ToString())
+                {
+                    <option selected value="@color">@color.ToString()</option>
+                }
+                else
+                {
+                    <option value="@color">@color.ToString()</option>
+                }
+            }
+        </InputSelect>
+    </div>
     
+</EditForm>
+@code {
+    private readonly ChartConfiguration _config = new ChartConfiguration
+    {
+        ChartType = ChartTypeEnum.Line,
+        Data = new ChartData
+        {
+            DataSets = new[]
+            {
+                new LineDataSet
+                {
+                    Data = new[]
+                    {
+                        new NumberDataPoint(10),
+                        new NumberDataPoint(14),
+                        new NumberDataPoint(12),
+                        new NumberDataPoint(5),
+                        new NumberDataPoint(7)
+                    }, 
+                    Label = "Test",
+                    BackgroundColor = Color.Aqua,
+                    BorderColor = Color.Red,
+                    BorderCapStyle = CanvasLineCap.Round,
+                    BorderDash = new double[] {3, 10}
+                },
+                new LineDataSet
+                {
+                    Data = new[]
+                    {
+                        new NumberDataPoint(5),
+                        new NumberDataPoint(7),
+                        new NumberDataPoint(12),
+                        new NumberDataPoint(20),
+                        new NumberDataPoint(3)
+                    }, 
+                    Label = "Test",
+                    BackgroundColor = Color.Purple,
+                    BorderColor = Color.Green,
+                    BorderCapStyle = CanvasLineCap.Butt,
+                    BorderDash = new double[] {6, 6, 6},
+                    BorderWidth = 30
+                }
+            },
+            Labels = new[] {"P1", "P2", "P3", "P4", "P5"}
+        }
+    };
 }

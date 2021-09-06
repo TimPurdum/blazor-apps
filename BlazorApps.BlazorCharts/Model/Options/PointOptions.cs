@@ -1,6 +1,6 @@
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model.Options
 {
-    public class PointOptions : CommonElementOptions
+    public interface IPointOptions
     {
         public double HitRadius { get; set; }
         public PointStyle PointStyle { get; set; }

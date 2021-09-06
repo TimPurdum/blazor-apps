@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model
 {
     public class Parsing
     {

@@ -1,6 +1,4 @@
-using System.Text.Json.Serialization;
-
-namespace BlazorApps.BlazorCharts.Model
+namespace BlazorApps.BlazorCharts.Model.Enums
 {
     [JsonEnumConverter]
     public enum CanvasLineCap

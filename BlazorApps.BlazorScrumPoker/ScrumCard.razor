@@ -1,32 +1,77 @@
-﻿<div class="scrum-card @_focus" @onmouseover="MouseOver" @onmouseout="MouseOut">
-    <div class="top-num">@Value</div>
-    <div class="top-name">Story Points</div>
-    <div class="center-num">@Value</div>
-    <div class="bottom-num">@Value</div>
-    <div class="bottom-name">Story Points</div>
+﻿<div class="scrum-card @_focus" style="@($"left: {LeftPct}%; top: {Top}px; transform: rotate({Rotation}deg); {GetBackgroundColor()}")" 
+    @onclick="OnCardClicked"
+     @onmouseover="MouseOver" @onmouseout="MouseOut">
+    @if (ContentVisible)
+    {
+        <div class="top-num">@Value</div>
+        <div class="top-name">Story Points</div>
+        <div class="center-num">@Value</div>
+        <div class="bottom-num">@Value</div>
+        <div class="bottom-name">Story Points</div>
+    }
 </div>
 
 @code
 {
     [Parameter]
     public double Value { get; set; } = 1;
-    
-    [Parameter]
-    public EventCallback<double> HasFocus { get; set; }
-    
-    [Parameter]
-    public EventCallback<double> LostFocus { get; set; }
 
-    private async Task MouseOver()
+    [Parameter]
+    public double LeftPct { get; set; }
+    
+    [Parameter]
+    public double Top { get; set; }
+    
+    [Parameter]
+    public double Rotation { get; set; }
+
+    [Parameter]
+    public bool Clickable { get; set; } = false;
+
+    [Parameter]
+    public EventCallback<double> CardClicked { get; set; }
+
+    [Parameter]
+    public bool ContentVisible { get; set; } = true;
+
+    [Parameter]
+    public Color? Background { get; set; }
+
+
+    private void MouseOver()
     {
-        _focus = "focus";
-        //await HasFocus.InvokeAsync(Value);
+        if (Clickable)
+        {
+            _focus = "focus";
+        }
     }
 
-    private async Task MouseOut()
+    private void MouseOut()
     {
-        _focus = string.Empty;
-        //await LostFocus.InvokeAsync(Value);
+        if (Clickable)
+        {
+            _focus = string.Empty;
+        }
+    }
+
+
+    private async Task OnCardClicked()
+    {
+        if (Clickable)
+        {
+            await CardClicked.InvokeAsync(Value);
+        }
+    }
+
+
+    private string GetBackgroundColor()
+    {
+        if (Background == null)
+        {
+            return string.Empty;
+        }
+        var cssColor = BlazorApps.Shared.ColorConverter.GetCssColor(Background.Value);
+        return $"background-image: none; background-color: {cssColor};";
     }
 
 

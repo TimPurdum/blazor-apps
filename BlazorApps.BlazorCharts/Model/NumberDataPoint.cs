@@ -1,7 +1,12 @@
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model
 {
-    public class NumberDataPoint: IDataPoint
+    public class NumberDataPoint: DataPoint
     {
-        public double Value { get; set; }
+        public NumberDataPoint(double value)
+        {
+            Value = value;
+        }
+
+        public double Value { get; }
     }
 }

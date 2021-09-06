@@ -18,7 +18,7 @@
         <PackageLicenseUrl>https://github.com/TimPurdum/blazor-apps/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/TimPurdum/blazor-apps</RepositoryUrl>
         <PackageTags>Music, Blazor</PackageTags>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <SupportedPlatform Include="browser" />

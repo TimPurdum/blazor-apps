@@ -1,8 +1,6 @@
-using System.Text.Json.Serialization;
-
-namespace BlazorApps.BlazorCharts.Model
+namespace BlazorApps.BlazorCharts.Model.Enums
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonEnumConverter]
     public enum CubicInterpolationMode
     {
         Default,

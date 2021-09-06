@@ -1,49 +1,31 @@
-<div style="padding: 60px">
+<div style="padding: 60px; position: absolute; width: 100%;">
     @for (var i = 0; i < Values.Length; i++)
     {
         var value = Values[i];
-        <div style="@($"display: inline-block; transform: rotate({-40 + (i * 10)}deg); margin-right: -120px;")">
-            <ScrumCard Value="value" HasFocus="@CardHasFocus" LostFocus="@CardLostFocus" />
-        </div>
+        var topOffset = i < 5
+            ? 75 - (i * 15)
+            : (i - 4) * 15;
+        var leftOffset = (5 * i) + 5;
+        var rotation = -40 + (i * 10);
+        <ScrumCard Value="value" Clickable="true" CardClicked="@OnCardClicked" LeftPct="@leftOffset" Top="@topOffset" Rotation="@rotation" />
     }
 </div>
 
 
 @code {
-
     [Parameter]
     public double[] Values { get; set; } = {
-        1, 2, 3, 5, 8, 13, 20, 40, 100
+        0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100
     };
 
+    [Parameter]
+    public string UserName { get; set; }
 
-    private void CardHasFocus(double value)
+    [Parameter]
+    public EventCallback<Tuple<string, double>> OnCardClickedCallback { get; set; }
+
+    private async Task OnCardClicked(double value)
     {
-        if (value > _currentFocusedValue)
-        {
-            _currentFocusedValue = value;
-            StateHasChanged();
-        }
+        await OnCardClickedCallback.InvokeAsync(new Tuple<string, double>(UserName, value));
     }
-
-
-    private void CardLostFocus(double value)
-    {
-        if (Math.Abs(value - _currentFocusedValue) < 0.1)
-        {
-            var nextCardIndex = Array.IndexOf(Values, value) - 1;
-            if (nextCardIndex <= 0)
-            {
-                _currentFocusedValue = -1;
-            }
-            else
-            {
-                _currentFocusedValue = Values[nextCardIndex];
-            }
-            StateHasChanged();
-        }
-    }
-
-
-    private double _currentFocusedValue;
 }

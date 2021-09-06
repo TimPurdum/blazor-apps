@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
     <PackageId>CedarRiverTech.BlazorApps.BlazorDataGrid</PackageId>
@@ -25,5 +25,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorApps.Shared\BlazorApps.Shared.csproj" />
   </ItemGroup>
 </Project>

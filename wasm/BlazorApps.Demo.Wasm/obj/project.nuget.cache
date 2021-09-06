@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2tO9Cv086KeJqG2lOTJ6kRKhZB1B/z/tWFj+9c/G2nT6PHRXUT4Erbxjx1P0N0YRcyZnLqdmSXhkU3p6alUrSg==",
+  "dgSpecHash": "fa6LByB8BlNtLi8K9uCZZgWKzgXLg70x3HFnBB5ZgphgvN33pJwHHSAQW8T4aN1jW18LjdL1aPt+/OFVKF5V+Q==",
   "success": true,
   "projectFilePath": "C:\\git\\blazor-apps\\wasm\\BlazorApps.Demo.Wasm\\BlazorApps.Demo.Wasm.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,7 @@
     "C:\\Users\\tim\\.nuget\\packages\\microsoft.jsinterop.webassembly\\5.0.3\\microsoft.jsinterop.webassembly.5.0.3.nupkg.sha512",
     "C:\\Users\\tim\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
     "C:\\Users\\tim\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512",
-    "C:\\Users\\tim\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.3\\microsoft.netcore.app.runtime.browser-wasm.5.0.3.nupkg.sha512"
+    "C:\\Users\\tim\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.0-preview.7.21377.19\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.0-preview.7.21377.19.nupkg.sha512"
   ],
   "logs": []
 }

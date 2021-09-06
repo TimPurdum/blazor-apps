@@ -1,4 +1,4 @@
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model
 {
     /// <summary>
     ///     Each parameter is a scriptable function to be passed to javascript, with a 'context' param

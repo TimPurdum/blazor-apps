@@ -1,19 +1,16 @@
 ﻿.scrum-card {
-    position: relative;
-    top: 0;
-    display: inline-block;
+    position: absolute;
+    width: 200px;
+    height: 300px;
     border: 2px solid black;
     border-radius: 20px;
-    height: 300px;
-    width: 200px;
     z-index: 0;
     background-image: url('background.png');
 }
 
 
 .focus {
-    position: relative;
-    z-index: 100;
+    z-index: 1;
     background-color: yellow;
     background-image: none;
 }

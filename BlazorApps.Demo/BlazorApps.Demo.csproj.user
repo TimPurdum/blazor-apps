@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>BlazorDataGrid</ActiveDebugProfile>
+    <ActiveDebugProfile>Kestrel</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

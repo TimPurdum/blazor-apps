@@ -1,7 +1,44 @@
-@page "/Scrum"
+@page "/Scrum/{roomName?}/{userName?}"
+@inject NavigationManager _navManager
+
 <h3>Scrum</h3>
-<ScrumHand />
+@if (RoomName == null)
+{
+    <label>Enter the Scrum Room Name</label>
+    <input type="text" @onchange="RoomNameChanged" />
+}
+else if (UserName == null)
+{
+    <label>Enter your Name</label>
+    <input type="text" @onchange="UserNameChanged" />
+}
+else
+{
+    <ScrumTable UserName="@UserName" RoomName="@RoomName" />
+}
+
 
 @code {
-    
+    [Parameter]
+    public string? UserName { get; set; }
+    [Parameter]
+    public string? RoomName { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (RoomName == null)
+        {
+            
+        }
+    }
+
+    private void RoomNameChanged(ChangeEventArgs e)
+    {
+        _navManager.NavigateTo($"/Scrum/{e.Value}");
+    }
+    private void UserNameChanged(ChangeEventArgs e)
+    {
+        _navManager.NavigateTo($"/Scrum/{RoomName}/{e.Value}");
+    }
 }

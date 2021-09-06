@@ -1,11 +1,17 @@
+using BlazorApps.BlazorCharts.Model.Options.Interfaces;
+using System;
 using System.Drawing;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model.Options
 {
-    public class CommonElementOptions : IChartOptions
+    public interface ICommonElementOptions : IChartOptions
     {
-        public Color BackgroundColor { get; set; }
-        public Color BorderColor { get; set; }
-        public double BorderWidth { get; set; }
+        [JsonConverter(typeof(ChartColorConverter))]
+        Color? BackgroundColor { get; set; }
+        [JsonConverter(typeof(ChartColorConverter))]
+        Color? BorderColor { get; set; }
+        double? BorderWidth { get; set; }
     }
 }

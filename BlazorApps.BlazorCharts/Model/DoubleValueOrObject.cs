@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace BlazorApps.BlazorCharts
+namespace BlazorApps.BlazorCharts.Model
 {
     public class DoubleValueOrObject: IChartConvertibleObject
     {
