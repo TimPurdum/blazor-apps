@@ -13,6 +13,5 @@
     <ProjectReference Include="..\BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj" />
     <ProjectReference Include="..\BlazorApps.BlazorScrumPoker\BlazorApps.BlazorScrumPoker.csproj" />
     <ProjectReference Include="..\BlazorApps.BlazorCharts\BlazorApps.BlazorCharts.csproj" />
-    <ProjectReference Include="..\BlazorControls\BlazorControls.csproj" />
   </ItemGroup>
 </Project>
