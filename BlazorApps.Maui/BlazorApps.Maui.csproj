@@ -22,6 +22,7 @@
 
 		<!-- Required for C# Hot Reload -->
 		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -53,6 +54,12 @@
 
 	<ItemGroup>
 		<Content Remove="Properties\launchSettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AppCenter" Version="4.4.0" />
+	  <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+	  <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
