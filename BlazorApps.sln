@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorControls", "BlazorCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.BlazorCharts", "BlazorApps.BlazorCharts\BlazorApps.BlazorCharts.csproj", "{FF41DFE2-7878-4868-8FAA-DF630E399161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Shared", "BlazorApps.Shared\BlazorApps.Shared.csproj", "{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.Shared", "BlazorApps.Shared\BlazorApps.Shared.csproj", "{14AD3E8C-07C3-4450-88F8-B8A83C8D8EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Test", "BlazorApps.Test\BlazorApps.Test.csproj", "{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApps.Test", "BlazorApps.Test\BlazorApps.Test.csproj", "{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApps.Maui", "BlazorApps.Maui\BlazorApps.Maui.csproj", "{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,12 @@ Global
 		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CFB7F7B-03E5-4EF0-A559-B06E33AE495D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A4CAC1-1D9A-4394-94ED-BD59B9798FCA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

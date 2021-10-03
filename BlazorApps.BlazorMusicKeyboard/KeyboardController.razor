@@ -1,7 +1,7 @@
 @using Microsoft.JSInterop
 @inject IJSRuntime JsRuntime
 <div id="keyboard-container">
-    <div style="width: 100%; display: inline-flex; justify-content: flex-end; position: absolute">
+    <div id="control-container">
         <button id="control-toggle" @onclick="ToggleControls"><i class="oi oi-chevron-bottom"/></button>
     </div>
     <div class="@(_isCollapsed ? "collapse" : "controls-popup")">

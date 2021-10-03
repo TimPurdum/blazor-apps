@@ -1,5 +1,6 @@
 using BlazorApps.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace BlazorApps.Test;
 [TestClass]

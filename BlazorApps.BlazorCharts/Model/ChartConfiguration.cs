@@ -11,9 +11,9 @@ namespace BlazorApps.BlazorCharts.Model
     {
         [JsonPropertyName("type")]
         public ChartTypeEnum ChartType { get; set; }
-        public ChartData Data { get; set; }
+        public ChartData? Data { get; set; }
         [JsonPropertyName("options")]
-        public IReadOnlyList<IChartOptions> Options { get; set; }
+        public IReadOnlyList<IChartOptions> Options { get; set; } = new List<IChartOptions>();
     }
 
     public class ChartTypeConverter : JsonConverter<ChartTypeEnum>

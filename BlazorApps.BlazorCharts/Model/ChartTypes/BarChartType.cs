@@ -6,9 +6,9 @@ namespace BlazorApps.BlazorCharts.Model.ChartTypes
     public class BarChartType: IChartType
     {
         public string Identifier => "bar";
-        public IReadOnlyList<IChartOptions> ChartOptions { get; }
-        public IReadOnlyList<IDataSetOptions> DataSetOptions { get; }
-        public DataPoint DefaultDataPoint { get; }
-        public IMetaExtensions MetaExtensions { get; }
+        public IReadOnlyList<IChartOptions> ChartOptions { get; } = new List<IChartOptions>();
+        public IReadOnlyList<IDataSetOptions> DataSetOptions { get; } = new List<IDataSetOptions>();
+        public DataPoint DefaultDataPoint { get; } = new DataPoint();
+        public IMetaExtensions? MetaExtensions { get; }
     }
 }

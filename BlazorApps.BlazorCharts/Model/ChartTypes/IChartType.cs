@@ -9,6 +9,6 @@ namespace BlazorApps.BlazorCharts.Model.ChartTypes
         IReadOnlyList<IChartOptions> ChartOptions { get; }
         IReadOnlyList<IDataSetOptions> DataSetOptions { get; }
         DataPoint DefaultDataPoint { get; }
-        IMetaExtensions MetaExtensions { get; }
+        IMetaExtensions? MetaExtensions { get; }
     }
 }

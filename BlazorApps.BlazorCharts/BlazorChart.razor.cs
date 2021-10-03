@@ -14,10 +14,10 @@ namespace BlazorApps.BlazorCharts
     public partial class BlazorChart: IAsyncDisposable
     {
         [Inject]
-        private IJSRuntime _jsRuntime { get; set; }
+        private IJSRuntime _jsRuntime { get; set; } = null!;
 
         [Parameter]
-        public ChartConfiguration Configuration { get; set; }
+        public ChartConfiguration? Configuration { get; set; }
 
 
         protected override async Task OnInitializedAsync()

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp6.0;net6.0-ios;net6.0-android;net6.0-maccatalyst;net6.0-windows10.0.19041</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0-rc.1.21452.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorApps.BlazorCharts\BlazorApps.BlazorCharts.csproj" />
+    <ProjectReference Include="..\BlazorApps.BlazorDataGrid\BlazorApps.BlazorDataGrid.csproj" />
+    <ProjectReference Include="..\BlazorApps.BlazorMusicKeyboard\BlazorApps.BlazorMusicKeyboard.csproj" />
+    <ProjectReference Include="..\BlazorApps.BlazorScrumPoker\BlazorApps.BlazorScrumPoker.csproj" />
+    <ProjectReference Include="..\BlazorApps.Shared\BlazorApps.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

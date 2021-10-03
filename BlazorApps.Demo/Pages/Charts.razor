@@ -1,8 +1,8 @@
-@page "/Charts"
+@*@page "/Charts"
 @using BlazorApps.BlazorCharts.Model
 @using BlazorApps.BlazorCharts.Model.ChartTypes
 @using BlazorApps.BlazorCharts.Model.Enums
-@using BlazorApps.BlazorCharts.Model.Options
+
 <h3>Charts</h3>
 
 <BlazorChart Configuration="@_config" />
@@ -19,11 +19,11 @@
         <h3>Data Set 1</h3>
         @{
             var dataSet = _config.Data.DataSets[0];
+            var knownColors = (Enum.GetValues(typeof(KnownColor)) as IEnumerable<KnownColor>)!.OrderBy(v => v.ToString()));
         }
         <label>Background Color</label>
         <InputSelect @bind-Value="dataSet.BackgroundColor">
-            @foreach (KnownColor color in (Enum.GetValues(typeof(KnownColor)) as IEnumerable<KnownColor>)
-                .OrderBy(v => v.ToString()))
+            @foreach (KnownColor color in knownColors)
             {
                 if (color.ToString() == dataSet.BackgroundColor.ToString())
                 {
@@ -37,8 +37,7 @@
         </InputSelect>
         <label>Border Color</label>
         <InputSelect @bind-Value="dataSet.BorderColor">
-            @foreach (KnownColor color in (Enum.GetValues(typeof(KnownColor)) as IEnumerable<KnownColor>)
-                .OrderBy(v => v.ToString()))
+            @foreach (KnownColor color in knownColors)
             {
                 if (color.ToString() == dataSet.BorderColor.ToString())
                 {
@@ -98,4 +97,4 @@
             Labels = new[] {"P1", "P2", "P3", "P4", "P5"}
         }
     };
-}
+}*@
